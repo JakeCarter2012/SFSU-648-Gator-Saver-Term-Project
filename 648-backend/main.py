@@ -1,13 +1,12 @@
 
 import logging
 import base64
-import os
+
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, flash, redirect, render_template, request, session, abort, g
 
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_file = "sqlite:///{}".format(os.path.join(project_dir, "postdatabase.db"))
+database_file = "sqlite:///postdatabase.db"
 
 app = Flask(__name__)
 
@@ -32,29 +31,36 @@ class Posts(db.Model):
         return "<image: {}".format(self.image)
         return "<category: {}".format(self.category)
 
+
+
 #index page
 @app.route('/', methods = ["GET","POST"])
 def index():
 
     return render_template('index.html')
 
+
 @app.route('/results',methods = ["GET","POST"])
 def results():
-   con = sqlite3.connect("postdatabase.db") #connects sqlite to the database 
+   con = sqlite3.connect("postdatabase.db") #connects to the database 
    con.row_factory = sqlite3.Row # this creates rows for the sqlite? not too sure about this
    cur = con.cursor() 
    search = request.form["search"] #gets data from search bar
    cur.execute("select * from Posts where category like ?", (search+'%',)) #searches from posts table and matches search result to category
    result = cur.fetchall() #retrieves list of queried items and stores it in result
-   i = 1
-   filename = 'static/item' + str(i) +'.jpg' #filename to write blob info into
+    #filename to write blob info into
+   l = [None] * 10 #this write the image filenames into a list, which is sent to results.html
    for row in result: 
-       if(row['image'] != None): #if the image is not null
-            
-            userImage = open(filename ,'wb')
-            userImage.write(row['image']) # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
-            i += 1
-   return render_template('results.html',searchQuery = result,fname = filename) #renders results.html, searchQuery is the list of items from database
+    j = row['id'] 
+    i = row['id']
+    l[j] = "item" + str(row['id']) + ".jpg"
+    
+    filename = 'static/item' + str(i) +'.jpg'
+    if(row['image'] != None): #if the image is not null
+        userImage = open(filename ,'wb')
+        userImage.write(row['image']) # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
+           
+   return render_template('results.html',searchQuery = result, search = search, list = l) #renders results.html, searchQuery is the list of items from database
 
 
 #about page 
