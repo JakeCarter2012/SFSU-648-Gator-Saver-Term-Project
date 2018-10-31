@@ -62,6 +62,15 @@ def results():
            
    return render_template('results.html',searchQuery = result, search = search, list = l) #renders results.html, searchQuery is the list of items from database
 
+   
+#sub pages
+@app.route('/login')    
+def login():
+    return render_template('login.html')
+
+@app.route('/SignUp')    
+def SignUp():
+    return render_template('SignUp.html')	
 
 #about page 
 @app.route('/about')    
