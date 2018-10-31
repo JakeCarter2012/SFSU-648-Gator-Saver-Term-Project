@@ -112,6 +112,7 @@ hr {
   border-color: #DADADA;
 }
 
+
 /*----------------------------*\
 	Buttons
 \*----------------------------*/
@@ -472,7 +473,10 @@ textarea.input {
 
 #navigation .container {
   position: relative;
+  
 }
+
+
 
 /*----------------------------*\
 	Category nav

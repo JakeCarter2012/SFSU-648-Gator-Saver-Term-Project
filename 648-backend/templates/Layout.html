@@ -31,20 +31,24 @@
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+	
+	<!-- Custom stylesheet from scratch-->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" />
 
 </head>
 <body>
 		<!-- top Header -->
 		<div id="top-header">
-			<div class="container">
+			<div class="container" >
 				<div class="pull-left">
 					<span>Welcome to E-shop!</span>
 				</div>
 				<div class="pull-right">
 					<ul class="header-top-links">
-						<li><a href="#">Store</a></li>
-						<li><a href="#">Newsletter</a></li>
-						<li><a href="#">FAQ</a></li>
+						<li><a href="{{ url_for('index') }}">Home</a></li>
+						<li><a href="{{ url_for('SignUp') }}">Sell</a></li>
+						<li><a href="{{ url_for('SignUp') }}">Register</a></li>
+						<li><a href="{{ url_for('about') }}">About Us</a></li>
 					</ul>
 				</div>
 			</div>
