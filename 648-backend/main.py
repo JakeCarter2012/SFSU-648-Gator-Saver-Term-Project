@@ -72,6 +72,14 @@ def login():
 def SignUp():
     return render_template('SignUp.html')	
 
+@app.route('/IndividualPost')    
+def SignUp():
+    return render_template('IndividualPost.html')	
+
+@app.route('/CreatePost')    
+def SignUp():
+    return render_template('CreatePost.html')	
+
 #about page 
 @app.route('/about')    
 def about():
