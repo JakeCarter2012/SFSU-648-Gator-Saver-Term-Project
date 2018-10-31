@@ -73,11 +73,11 @@ def SignUp():
     return render_template('SignUp.html')	
 
 @app.route('/IndividualPost')    
-def SignUp():
+def IndividualPost():
     return render_template('IndividualPost.html')	
 
 @app.route('/CreatePost')    
-def SignUp():
+def CreatePost():
     return render_template('CreatePost.html')	
 
 #about page 
