@@ -19,19 +19,13 @@
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
 
-	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='slick.css') }}" />
-	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}" />
-
-	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='nouislider.min.css') }}" />
-
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}" />
-
+	
 	<!-- Custom stlylesheet -->
+	
+	<!-- Disabling this and only using style.css as a reference to put onto custom.css - Tina Nguyen
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 	
+	-->
 	<!-- Custom stylesheet from scratch-->
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" />
 
@@ -43,27 +37,7 @@
 				<div class="pull-left">
 					<span>Welcome to E-shop!</span>
 				</div>
-				<div class="pull-right">
-					<ul class="header-top-links">
-						<li><a href="{{ url_for('index') }}">Home</a></li>
-						<li><a href="{{ url_for('SignUp') }}">Sell</a></li>
-						<li><a href="{{ url_for('SignUp') }}">Register</a></li>
-						<li><a href="{{ url_for('about') }}">About Us</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- /top Header -->
-        <div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- Logo -->
-					<div class="header-logo">
-						<a class="logo" href="#">
-							<img src="./img/logo.png" alt="">
-						</a>
-					</div>
-                    					<!-- Search -->
+				<!-- Search -->
 					<div class="header-search">
 						<form>
 							<input class="input search-input" type="text" placeholder="Enter your keyword">
@@ -76,6 +50,28 @@
 						</form>
 					</div>
 					<!-- /Search -->
+				<div class="pull-right">
+					<ul class="header-top-links">
+						<li><a href="{{ url_for('index') }}">Home</a></li>
+						<li><a href="{{ url_for('SignUp') }}">Sell</a></li>
+						<li><a href="{{ url_for('SignUp') }}">Register</a></li>
+						<li><a href="{{ url_for('about') }}">About Us</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		<!-- /top Header -->
+        <div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- Logo -->
+					<div class="header-logo">
+						<a class="logo" href="#">
+							<img src="./img/logo.png" alt="">
+						</a>
+					</div>
+                    					
 
 					<!-- /Logo -->
 				<div class="pull-right">

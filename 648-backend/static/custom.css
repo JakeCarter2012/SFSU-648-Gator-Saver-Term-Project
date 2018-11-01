@@ -6,3 +6,54 @@
 top-header{
 	background-color: #6db6ce;
 }
+
+#top-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #DADADA;
+  background-color: #6a7b96;
+}
+
+.header-top-links>li {
+  display: inline-block;
+}
+
+.header-top-links>li+li {
+  margin-left: 15px;
+}
+
+.header-top-links>li>a {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.header-search {
+  display: inline-block;
+  padding: 15px 0px;
+  max-width: 400px;
+  align: center;
+}
+
+.header-search>form {
+  position: relative;
+}
+
+.header-search>form .search-input {
+  padding-left: 150px;
+  padding-right: 45px;
+}
+
+.header-search>form .search-categories {
+  position: relative;
+  width: 135px;
+}
+
+.header-search>form .search-btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+}

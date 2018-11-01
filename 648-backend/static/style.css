@@ -321,6 +321,7 @@ textarea.input {
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid #DADADA;
+  background-color: #6a7b96;
 }
 
 .header-top-links>li {
@@ -358,6 +359,7 @@ textarea.input {
   display: inline-block;
   padding: 15px 0px;
   max-width: 400px;
+  align: center;
 }
 
 .header-search>form {
@@ -370,9 +372,7 @@ textarea.input {
 }
 
 .header-search>form .search-categories {
-  position: absolute;
-  left: 0px;
-  top: 0px;
+  position: relative;
   width: 135px;
 }
 
