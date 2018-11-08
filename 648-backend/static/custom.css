@@ -1,6 +1,8 @@
 .container{
 	
 	background-color: white;
+	width: 500px;
+  clear: both;
 }
 
 top-header{
@@ -57,3 +59,7 @@ top-header{
   background-color: transparent;
   border: none;
 }
+
+
+
+

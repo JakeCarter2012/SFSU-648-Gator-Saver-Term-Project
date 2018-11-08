@@ -4,13 +4,48 @@
 h1 {
  padding: 50px;
 }
+.container2 {
+  width: 500px;
+  clear: both;
+  
+}
+
+.container2 input {
+  width: 100%;
+  clear: both;
+  
+}
 </style>
 <div class="container-fluid">
   <h1 align="center">Create a Listing</h1>
   <div class="row">
-    <div class="col-sm-2">Left Space</div>
-    <div class="col-sm-8">Listing goes here</div>
-    <div class="col-sm-2">RightSpace</div>
+    <!-- Left Spacer -->
+    <div class="col-sm-2"></div>
+	
+    <div align="center">
+	
+		<div class="container2">
+		<form action="/action_page.php">
+			Listing Title: <input type="text" name="title"  size="48" align="Center"><br>
+			Category: 
+				<select>
+				  <option value="Books">Books</option>
+				  <option value="Electronics">Electronics</option>
+				  <option value="Furniture">Furniture</option>
+				  <option value="Misc">Misc</option>
+				</select>
+			<br>
+			Price: <input type="text" name="price"  size="48"><br>
+			Description: <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea><br>
+			Images: <input type="file" name="img" multiple><br>
+			<input type="submit">
+		</form>
+		</div>
+	
+	</div>
+	
+	<!-- Right Spacer -->
+    <div class="col-sm-2"></div>
   </div>
 </div>
 
