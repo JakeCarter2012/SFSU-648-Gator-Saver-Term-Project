@@ -12,9 +12,14 @@
     <div align="center">
 	
 		<div class="container2">
-		<form action="/action_page.php">
-			Listing Title: <input type="text" name="title"  size="48" align="Center"><br>
-			Category: 
+		<form action="/action_page.php" method="post">
+		
+			<!-- title -->
+			<h4><label for="Title">Listing Title:</label></h4> 
+			<input type="text" name="title"  ><br>
+			
+			<!-- category -->
+			<h4><label for="Category">Category:</label> </h4>
 				<select>
 				  <option value="Books">Books</option>
 				  <option value="Electronics">Electronics</option>
@@ -22,10 +27,23 @@
 				  <option value="Misc">Misc</option>
 				</select>
 			<br>
-			Price: <input type="text" name="price"  size="48"><br>
-			Description: <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea><br>
-			Images: <input type="file" name="img" multiple><br>
-			<input type="submit">
+			
+			<!-- price -->
+			<h4><label for="Price">Price:</label></h4> 
+			<input type="text" name="price"  size="48"><br>
+			
+			<!-- description -->
+			<h4><label for="Description">Description:</label></h4> 
+			<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea><br>
+			
+			<!-- images -->
+			<h4><label for="Images">Images:</label></h4> 
+			<input type="file" name="img" multiple><br>
+			
+			<!-- submit button -->
+			<div class="button">
+			<button type="submit">Submit Listing</button>
+			</div>
 		</form>
 		</div>
 	
