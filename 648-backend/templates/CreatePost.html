@@ -1,21 +1,8 @@
 {% extends "Layout.html" %}
 {% block content %}
-<style>
-h1 {
- padding: 50px;
-}
-.container2 {
-  width: 500px;
-  clear: both;
-  
-}
-
-.container2 input {
-  width: 100%;
-  clear: both;
-  
-}
-</style>
+<head>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='CreatePost.css') }}" />
+</head>
 <div class="container-fluid">
   <h1 align="center">Create a Listing</h1>
   <div class="row">
