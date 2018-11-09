@@ -17,7 +17,7 @@ form div + div {
   margin: 0 auto;
   width: 50%;
   /* To see the outline of the form */
-  padding: 1em;
+  padding: 8em;
   border: 1px solid #CCC;
   border-radius: 1em;
   
@@ -30,7 +30,7 @@ input, textarea {
 
   /* To give the same size to all text fields */
   box-sizing: border-box;
-  width: 50%;
+  width: 80%;
   
   /* To harmonize the look & feel of text field border */
   border: 1px solid #999;

@@ -1,21 +1,47 @@
 {% extends "Layout.html" %}
 {% block content %}
-
-
-<style>
-h1 {
- padding: 50px;
-}
-</style>
+<head>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='IndividualPost.css') }}" />
+</head>
 <div class="container-fluid">
-
-<!-- title of post from backend goes here -->
-<h1 align="center">Listing's Name</h1> 
+  <h1 align="center">[Listing Name]</h1>
   <div class="row">
-	<!-- Left Spacer -->
+    <!-- Left Spacer -->
     <div class="col-sm-2"></div>
 	
-    <div class="col-sm-8">Listing goes here</div>
+    
+	
+		<div class="container2">
+		<form action="/action_page.php" method="post">
+		
+			<!-- images -->
+			<label for="Images">Images:</label><br>
+			
+			
+			<!-- category -->
+			<label for="Category">Category:</label><br>
+			
+			
+			<!-- price -->
+			<label for="Price">Price:</label><br> 
+			
+			
+			<!-- description -->
+			<label for="Description">Description:</label><br><br><br>
+			
+			<label for="Message">Message:</label>
+			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px"></textarea><br>
+			
+			
+			
+			<!-- submit button -->
+			<div class="button" align="left">
+			<button type="submit" size="48">Send</button>
+			</div>
+		</form>
+		</div>
+	
+	
 	
 	<!-- Right Spacer -->
     <div class="col-sm-2"></div>
