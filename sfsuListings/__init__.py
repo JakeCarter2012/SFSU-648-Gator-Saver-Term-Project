@@ -62,7 +62,8 @@ def index():
 
 @app.route('/results',methods = ["GET","POST"])
 def results():
-   con = sqlite3.connect("postdatabase.db") #connects to the database 
+   path = "/var/www/sfsuListings/sfsuListings/"
+   con = sqlite3.connect(path + "postdatabase.db") #connects to the database 
    con.row_factory = sqlite3.Row # this creates rows for the sqlite? not too sure about this
    cur = con.cursor() 
    search = request.form["search"] #gets data from search bar
@@ -75,7 +76,7 @@ def results():
     i = row['id']
     l[j] = "item" + str(row['id']) + ".jpg"
     
-    filename = 'static/item' + str(i) +'.jpg'
+    filename = path + 'static/item' + str(i) +'.jpg'
     if(row['image'] != None): #if the image is not null
         userImage = open(filename ,'wb')
         userImage.write(row['image']) # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
