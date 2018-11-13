@@ -1,0 +1,50 @@
+{% extends "Layout.html" %}
+{% block content %}
+<head>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='IndividualPost.css') }}" />
+</head>
+<div class="container-fluid">
+  <h1 align="center">[Listing Name]</h1>
+  <div class="row">
+    <!-- Left Spacer -->
+    <div class="col-sm-2"></div>
+	
+    
+	
+		<div class="container2">
+		<form action="/action_page.php" method="post">
+		
+			<!-- images -->
+			<label for="Images">Images:</label><br><br><br>
+			
+			
+			<!-- category -->
+			<label for="Category">Category:</label><br>
+			
+			
+			<!-- price -->
+			<label for="Price">Price:</label><br> 
+			
+			
+			<!-- description -->
+			<label for="Description">Description:</label><br><br><br>
+			
+			<label for="Message">Message:</label>
+			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px"></textarea><br>
+			
+			
+			
+			<!-- submit button -->
+			<div class="button" align="left">
+			<button type="submit" size="48">Send</button>
+			</div>
+		</form>
+		</div>
+	
+	
+	
+	<!-- Right Spacer -->
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+{% endblock content %}
