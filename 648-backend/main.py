@@ -6,6 +6,10 @@ import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, flash, redirect, render_template, request, session, abort, g
 
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_migrate import Migrate
+import os
+
 database_file = "sqlite:///postdatabase.db"
 
 app = Flask(__name__)
@@ -13,6 +17,13 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
 db = SQLAlchemy(app)
+
+migrate = Migrate(app,db)
+#NOTE: Secret key resets to new key each time server is restarted;
+#this will invalidate any old session cookies the user has, and requires log out
+#can hardcode the secret key to 'solve' this, but is considered unsafe practice
+app.config['SECRET_KEY'] = os.urandom(24)
+
 
 #model class
 class Posts(db.Model):
@@ -31,7 +42,16 @@ class Posts(db.Model):
         return "<image: {}".format(self.image)
         return "<category: {}".format(self.category)
 
+class RegisteredUser(db.Model):
+    UserName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
+    password_hash = db.Column(db.String(96), unique=True, nullable=False, primary_key=False)
 
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return "<Username: {}>".format(self.UserName)
+        return "<Hashed Password: {}".format(self.password_hash)
 
 #index page
 @app.route('/', methods = ["GET","POST"])
@@ -64,13 +84,48 @@ def results():
 
    
 #sub pages
-@app.route('/login')    
+@app.route('/login', methods=['GET'])
 def login():
     return render_template('login.html')
 
-@app.route('/SignUp')    
+
+@app.route('/login', methods=['POST'])
+def login_submit():
+    user = RegisteredUser.query.filter_by(UserName=request.form['username']).first()
+    if user is None or not user.check_password(request.form['password']):
+        flash('Invalid username or password.')
+        return redirect('/login')
+    session['logged_in'] = True
+    session['user_name'] = request.form['username']
+    return redirect('/')
+
+@app.route('/SignUp' , methods=['GET'])
 def SignUp():
     return render_template('SignUp.html')	
+
+@app.route('/SignUp' , methods=['POST'])
+def register():
+    user = RegisteredUser.query.filter_by(UserName=request.form['username']).first()
+    if user is not None:
+        flash('User name is already taken.')
+        if request.form['password'] != request.form['repassword']:
+            flash('Passwords do not match.')
+        return redirect('/SignUp')
+    if request.form['password'] != request.form['repassword']:
+        flash('Passwords do not match.')
+        return redirect('/SignUp')
+    newUser = RegisteredUser(UserName=request.form['username'], password_hash=generate_password_hash(request.form['password']))
+    db.session.add(newUser)
+    db.session.commit()
+    session['logged_in'] = True
+    session['user_name'] = request.form['username']
+    return redirect('/')
+
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    session['user_name'] = None
+    return redirect('/')
 
 @app.route('/IndividualPost')    
 def IndividualPost():

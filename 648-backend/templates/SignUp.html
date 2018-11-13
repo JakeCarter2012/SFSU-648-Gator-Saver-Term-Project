@@ -2,10 +2,18 @@
 {% block content %}
     <div class="col-lg-8">
                             <div class="login_title">
-                                <h2>create account</h2>
-                                <p>Follow the steps below to create email account enjoy the great mail.com emailing experience. Vivamus tempus risus vel felis condimentum, non vehicula est iaculis.</p>
+                                <h2>Create Account</h2>
+                                    {% with messages = get_flashed_messages() %}
+                                      {% if messages %}
+                                        <ul class=flashes>
+                                        {% for message in messages %}
+                                          <li style="color:red">{{ message }}</li>
+                                        {% endfor %}
+                                        </ul>
+                                      {% endif %}
+                                    {% endwith %}
                             </div>
-                            <form class="login_form row">
+                            <form action="" method="post" class="login_form row">
                                 <div class="col-lg-6 form-group">
                                     <input class="form-control" type="text" placeholder="Name">
                                 </div>
@@ -13,16 +21,13 @@
                                     <input class="form-control" type="email" placeholder="Email">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="User Name">
+                                    <input class="form-control" type="text" placeholder="User Name" name="username">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Phone">
+                                    <input class="form-control" type="password" placeholder="Password" name="password">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="password" placeholder="Password">
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="password" placeholder="Re-Password">
+                                    <input class="form-control" type="password" placeholder="Re-Password" name="repassword">
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <button type="submit" value="submit" class="btn subs_btn form-control">register now</button>
