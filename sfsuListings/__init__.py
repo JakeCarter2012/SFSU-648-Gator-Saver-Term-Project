@@ -59,7 +59,7 @@ class RegisteredUser(db.Model):
 #index page
 @app.route('/', methods = ["GET","POST"])
 def index():
-    return render_template('index.html')
+    return render_template('HomePage.html')
 
 
 @app.route('/results',methods = ["GET","POST"])
