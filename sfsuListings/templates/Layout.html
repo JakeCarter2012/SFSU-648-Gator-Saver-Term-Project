@@ -19,25 +19,53 @@
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
 
-	
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='slick.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='slick-theme.css') }}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='nouislider.min.css') }}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}" />
+
 	<!-- Custom stlylesheet -->
-	
-	<!-- Disabling this and only using style.css as a reference to put onto custom.css - Tina Nguyen
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-	
-	-->
-	<!-- Custom stylesheet from scratch-->
-	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" />
 
 </head>
 <body>
+	<!-- HEADER -->
+	<header>
 		<!-- top Header -->
 		<div id="top-header">
-			<div class="container" >
+			<div class="container">
 				<div class="pull-left">
-					<span>Welcome to E-shop!</span>
+					<span>San Francisco State Shop!</span>
 				</div>
-				<!-- Search -->
+				<div class="pull-right">
+					<ul class="header-top-links">
+						<li><a href="#">Store</a></li>
+						<li><a href="http://www.sfsu.edu/~sfsumap/">School MAP</a></li>
+						<li><a href="http://www.sfsu.edu/">School Page</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /top Header -->
+
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- Logo -->
+					<div class="header-logo">
+						<a class="logo" href="#">
+							<img src=" {{url_for('static', filename='img/logo.png')}}">
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Search -->
 					<div class="header-search">
 						<form>
 							<input class="input search-input" type="text" placeholder="Enter your keyword">
@@ -50,30 +78,7 @@
 						</form>
 					</div>
 					<!-- /Search -->
-				<div class="pull-right">
-					<ul class="header-top-links">
-						<li><a href="{{ url_for('index') }}">Home</a></li>
-						<li><a href="{{ url_for('SignUp') }}">Sell</a></li>
-						<li><a href="{{ url_for('login') }}">Login</a></li>
-						<li><a href="{{ url_for('about') }}">About Us</a></li>
-					</ul>
 				</div>
-			</div>
-			
-		</div>
-		<!-- /top Header -->
-        <div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- Logo -->
-					<div class="header-logo">
-						<a class="logo" href="#">
-							<img src="./img/logo.png" alt="">
-						</a>
-					</div>
-                    					
-
-					<!-- /Logo -->
 				<div class="pull-right">
 					<ul class="header-btns">
 						<!-- Account -->
@@ -84,13 +89,11 @@
 								</div>
 								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
 							</div>
-                            <a href="{{ url_for('login') }}"> Login</a> /
-                            <a href="{{ url_for('SignUp') }}"> Join</a>
+							<a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
 							<ul class="custom-menu">
 								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                                <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
+								<li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
 								<li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
-
 							</ul>
 						</li>
 						<!-- /Account -->
@@ -105,6 +108,218 @@
 			</div>
 			<!-- header -->
 		</div>
-</body>
-</html>
-    {% block content %}{% endblock content %}
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<div id="navigation">
+		<!-- container -->
+		<div class="container">
+			<div id="responsive-nav">
+				<!-- menu nav -->
+				<div class="menu-nav">
+					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+					<ul class="menu-list">
+						<li><a href="#">Home</a></li>
+						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">BOOKS
+								<i class="fa fa-caret-down"></i></a>
+							<div class="custom-menu">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+												<div class="banner-caption text-center">
+													<h3 class="white-color text-uppercase">Books</h3>
+												</div>
+											</a>
+											<hr>
+										</div>
+										<ul class="list-links">
+											<li><a href="#">Business</a></li>
+											<li><a href="#">Computer Science</a></li>
+											<li><a href="#">English</a></li>
+											<li><a href="#">History</a></li>
+											<li><a href="#">Mathematics</a></li>
+											<li><a href="#">Physics</a></li>
+											<li><a href="#">Science</a></li>
+											<li><a href="#">Others</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">CLOTHING
+								<i class="fa fa-caret-down"></i></a>
+							<div class="custom-menu">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/banner06.jpg')}}">
+												<div class="banner-caption text-center">
+													<h3 class="white-color text-uppercase">Man</h3>
+												</div>
+											</a>
+											<hr>
+										</div>
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Categories</h3>
+											</li>
+											<li><a href="#">Jacket</a></li>
+											<li><a href="#">T-shirt</a></li>
+											<li><a href="#">pants</a></li>
+											<li><a href="#">shoes</a></li>
+											<li><a href="#">Others</a></li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/banner07.jpg')}}">
+												<div class="banner-caption text-center">
+													<h3 class="white-color text-uppercase">Women</h3>
+												</div>
+											</a>
+										</div>
+										<hr>
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Categories</h3>
+											</li>
+											<li><a href="#">Jacket</a></li>
+											<li><a href="#">Jeans</a></li>
+											<li><a href="#">Dress</a></li>
+											<li><a href="#">Shoes</a></li>
+											<li><a href="#">Others</a></li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/banner08.jpg')}}">
+												<div class="banner-caption text-center">
+													<h3 class="white-color text-uppercase">Accessories</h3>
+												</div>
+											</a>
+										</div>
+										<hr>
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Categories</h3>
+											</li>
+											<li><a href="#">Necklaces</a></li>
+											<li><a href="#">Earrings</a></li>
+											<li><a href="#">Ring</a></li>
+											<li><a href="#">Bracelets</a></li>
+											<li><a href="#">Others</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Laptop
+								<i class="fa fa-caret-down"></i></a>
+							<div class="custom-menu">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/Laptop.jpg')}}">
+												<div class="banner-caption text-center">
+														<h3 class="white-color text-uppercase">Others</h3>
+													</div>
+											</a>
+										</div>
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Categories</h3>
+											</li>
+											<li><a href="#">Apple</a></li>
+											<li><a href="#">Dell</a></li>
+											<li><a href="#">Asus</a></li>
+											<li><a href="#">Samsung</a></li>
+											<li><a href="#">Alienware</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Electronics
+								<i class="fa fa-caret-down"></i></a>
+							<div class="custom-menu">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+												<div class="banner-caption text-center">
+														<h3 class="white-color text-uppercase">Others</h3>
+													</div>
+											</a>
+										</div>
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Categories</h3>
+											</li>
+											<li><a href="#">Cell Phone</a></li>
+											<li><a href="#">Smart Watches</a></li>
+											<li><a href="#">TV</a></li>
+											<li><a href="#">Tablets</a></li>
+											<li><a href="#">Video Game</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Furniture
+								<i class="fa fa-caret-down"></i></a>
+							<div class="custom-menu">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1" href="#">
+												<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+												<div class="banner-caption text-center">
+														<h3 class="white-color text-uppercase">Others</h3>
+													</div>
+											</a>
+										</div>
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Categories</h3>
+											</li>
+											<li><a href="#">Bed</a></li>
+											<li><a href="#">Chairs</a></li>
+											<li><a href="#">Bookcases</a></li>
+											<li><a href="#">Table</a></li>
+											<li><a href="#">Drawers</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+
+				</li>
+				</ul>
+			</div>
+			<!-- menu nav -->
+		</div>
+	</div>
+	<!-- /container -->
+	</div>
+	<!-- /NAVIGATION -->
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+{% block content %}{% endblock content %}
