@@ -41,7 +41,10 @@ class Posts(db.Model):
         return "<price: {}".format(self.price)
         return "<image: {}".format(self.image)
         return "<category: {}".format(self.category)
-
+'''    
+Class for registered user; note that passord is hashed
+to compare passwords the check_password fuction must be called
+'''
 class RegisteredUser(db.Model):
     UserName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
     password_hash = db.Column(db.String(96), unique=True, nullable=False, primary_key=False)
@@ -56,7 +59,6 @@ class RegisteredUser(db.Model):
 #index page
 @app.route('/', methods = ["GET","POST"])
 def index():
-
     return render_template('index.html')
 
 
@@ -92,6 +94,11 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def login_submit():
+    '''
+    Post method for login submission; query's database for entered username,
+    If username doesn't exist, or the password doesn't match the hatched password,
+    return an error to the user, otherwise log the user's session in.
+    '''
     user = RegisteredUser.query.filter_by(UserName=request.form['username']).first()
     if user is None or not user.check_password(request.form['password']):
         flash('Invalid username or password.')
@@ -106,6 +113,11 @@ def SignUp():
 
 @app.route('/SignUp' , methods=['POST'])
 def register():
+    '''
+    Queries the database to see if the username is taken; then compares passwords to ensure they are the same.
+    If either check fails, the user is flashed with the error. Otherwise, the user's account
+    is created and their password is hashed, and they are logged in as their new account name.
+    '''
     user = RegisteredUser.query.filter_by(UserName=request.form['username']).first()
     if user is not None:
         flash('User name is already taken.')
@@ -124,6 +136,9 @@ def register():
 
 @app.route('/logout')
 def logout():
+    '''
+    Ends the users session and logs out the user.
+    '''
     session['logged_in'] = False
     session['user_name'] = None
     return redirect('/')
