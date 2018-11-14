@@ -30,20 +30,26 @@
 			
 			<!-- price -->
 			<label for="Price">Price:</label> 
-			<input type="text" name="price"  size="24"><br>
+			<input type="text" name="price"  size="48"><br>
 			
 			<!-- description -->
 			<label for="Description">Description:</label>
 			<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea><br>
 			
-			<!-- images -->
-			<label for="Images">Images:</label>
+			<!-- images --> 
+			<label for="Images">Images: (select up to 5 images)</label> <!-- Will need to do scripting to limit upload file count!!!-->
 			<input type="file" name="img" multiple ><br>
+			
+			
+			
 			
 			<!-- submit button -->
 			<div class="button" align="left">
 			<button type="submit" size="48">Create Listing</button>
+			<button type="submit" name="cancel" size="48">Cancel</button>
 			</div>
+			
+			
 		</form>
 		</div>
 	

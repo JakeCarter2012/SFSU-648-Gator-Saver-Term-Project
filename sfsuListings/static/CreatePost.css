@@ -43,9 +43,16 @@ input[type="file"]{
 }
 
 input[name="price"]{
-	width: 20%;
-	margin-left: 92px;
+	width: 90px;
+	margin-left: 0px;
 }
+
+button[name="cancel"]{
+	width: 90px;
+	margin-left: 10px;
+	
+}
+
 input:focus, textarea:focus {
   /* To give a little highlight on active elements */
   border-color: #000;
