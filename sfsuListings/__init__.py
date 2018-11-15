@@ -10,6 +10,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 import os
 
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+import json
+
 database_file = "sqlite:///postdatabase.db"
 
 app = Flask(__name__)
@@ -117,17 +121,48 @@ def register():
     Queries the database to see if the username is taken; then compares passwords to ensure they are the same.
     If either check fails, the user is flashed with the error. Otherwise, the user's account
     is created and their password is hashed, and they are logged in as their new account name.
+
+    For captcha localhost testing, use:
+    Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+    captchakey: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+    use the site key in SignUp.html
     '''
     user = RegisteredUser.query.filter_by(UserName=request.form['username']).first()
+    missingField = False
     if user is not None:
         flash('User name is already taken.')
-        if request.form['password'] != request.form['repassword']:
-            flash('Passwords do not match.')
-        return redirect('/SignUp')
+        missingField = True
     if request.form['password'] != request.form['repassword']:
         flash('Passwords do not match.')
+        missingField = True
+    if request.form.get('termsCheckBox') == None:
+        flash('Please accept the terms and conditions of use.')
+        missingField = True
+    if request.form.get('g-recaptcha-response') == "" or request.form.get('g-recaptcha-response') == None:
+        flash('Captcha invalid')
+        missingField = True
+    else:
+        '''
+        Captcha validation: Send request to google api with our domain's key
+        and the captcha's output; then receive json and parse it to see
+        if captcha was passed or not
+        '''
+        captchaKey = '6Ldu6noUAAAAAKQTCQMVOj5_IfZR6XaKPVFzNJmx'
+        post_fields = {'secret': captchaKey,
+                       'response': request.form.get('g-recaptcha-response')}
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        captchaRequest = Request(url, urlencode(post_fields).encode())
+        jsonRaw = urlopen(captchaRequest).read().decode()
+        jsonData = json.loads(jsonRaw)
+        if jsonData['success'] == False:
+            flash('Captcha failed - are you sure you are not a robot?')
+            missingField = True
+
+    if missingField:
         return redirect('/SignUp')
-    newUser = RegisteredUser(UserName=request.form['username'], password_hash=generate_password_hash(request.form['password']))
+
+    newUser = RegisteredUser(UserName=request.form['username'],
+                             password_hash=generate_password_hash(request.form['password']))
     db.session.add(newUser)
     db.session.commit()
     session['logged_in'] = True
@@ -149,7 +184,11 @@ def IndividualPost():
 
 @app.route('/CreatePost')    
 def CreatePost():
-    return render_template('CreatePost.html')	
+    return render_template('CreatePost.html')
+
+@app.route('/termsOfService')
+def termsOfService():
+    return render_template('termsOfService.html')
 
 #about page 
 @app.route('/about')    
