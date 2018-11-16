@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>Individual post <p>
+<p>Title of post <p>
+<p>Interested in buying ? <p>
+
+    <!--  <h2>Send e-mail to someone@example.com:</h2>
+
+  <form action="mailto:someone@example.com" method="post" enctype="text/plain">
+      Name:<br>
+      <input type="text" name="name"><br>
+      E-mail:<br>
+      <input type="text" name="mail"><br> -->
+
+      Comment:<br>
+      <input type="text" name="comment" rows="4" size="100"><br><br><br>
+      <p>Interested in buying ? <p>
+      <input type="submit" value="Send">
+      <input type="reset" value="Cancel">
+
+
+
+  </form>
+
+  </body>
+  </html>
