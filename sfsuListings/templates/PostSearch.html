@@ -1,0 +1,251 @@
+{% extends "Header.html" %}
+{% block content %}
+
+    <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input">
+									<option value="0">Price</option>
+									<option value="0">Date</option>
+								</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+								<select class="input">
+									<option value="0">10</option>
+									<option value="1">20</option>
+									<option value="2">30</option>
+								</select>
+							</div>
+							<ul class="store-pages">
+								<li><span class="text-uppercase">Page:</span></li>
+								<li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">>
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<div class="clearfix visible-sm visible-xs"></div>
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+
+										<button class="primary-btn"></i> Message Seller</button>
+
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<div class="clearfix visible-md visible-lg"></div>
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<div class="clearfix visible-sm visible-xs"></div>
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+							<div class="clearfix visible-sm visible-xs"></div>
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$32.50</h3>
+										<h2 class="product-name"><a href="#">Post Name Goes Here</a></h2>
+										<button class="primary-btn"></i> Message Seller</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+						</div>
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input">
+									<option value="0">Price</option>
+									<option value="0">Date</option>
+								</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+								<select class="input">
+									<option value="0">10</option>
+									<option value="1">20</option>
+									<option value="2">30</option>
+								</select>
+							</div>
+							<ul class="store-pages">
+								<li><span class="text-uppercase">Page:</span></li>
+								<li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+    <br>
+    <br>
+    <br>
+
+
+{% endblock content %}

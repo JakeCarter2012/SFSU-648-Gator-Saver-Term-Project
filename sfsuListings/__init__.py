@@ -207,6 +207,10 @@ def termsOfService():
 def Dashboard():
     return render_template('Dashboard.html')
 
+@app.route('/PostSearch')
+def PostSearch():
+    return render_template('PostSearch.html')
+
 @app.route('/DashboardMessage')
 def DashboardMessage():
     return render_template('DashboardMessage.html')

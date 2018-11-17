@@ -1,197 +1,55 @@
-{% extends "Layout.html" %}
+{% extends "Header.html" %}
 {% block content %}
-    <!-- HOME -->
-	<div id="home">
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- banner -->
-					<div class="col-md-9">
-						<!-- home slick -->
-						<div id="home-slick" class="my-home-slick">
-							<!-- banner -->
-							<div class="banner banner-1">
-								<img src=" {{url_for('static', filename='images/Booklarge1.jpg')}}">
-								<div class="banner-caption text-center">
-									<h1>USED BOOK</h1>
-									<h3 class="white-color font-weak">Up to 50% OFF</h3>
-									<button class="primary-btn">SEE Now</button>
-								</div>
-							</div>
-							<!-- /banner -->
 
-							<!-- banner -->
-							<div class="banner banner-1">
-								<img src=" {{url_for('static', filename='images/laptoplarge.jpg')}}">
-								<div class="banner-caption">
-									<h1 class="primary-color">LAPTOP <br><span class="white-color font-weak">NEW OR USED</span></h1>
-									<button class="primary-btn">SEE Now</button>
-								</div>
-							</div>
-							<!-- /banner -->
-
-							<!-- banner -->
-							<div class="banner banner-1">
-								<img src=" {{url_for('static', filename='images/Newpost.jpg')}}">
-								<div class="banner-caption">
-									<h1 class="white-color">New Product <span>Collection</span></h1>
-									<button class="primary-btn">SEE Now</button>
-								</div>
-							</div>
-							<!-- /banner -->
-						</div>
-						<!-- /home slick -->
-					</div>
-					<!-- /banner -->
-
-					<!-- banner -->
-					<div class="col-md-3 col-sm-6">
-						<a class="banner banner-1" href="#">
-							<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-							<div class="banner-caption text-center">
-								<h2 class="white-color">NEW COLLECTION</h2>
-							</div>
-						</a>
-					</div>
-					<!-- /banner -->
-
-					<!-- banner -->
-					<div class="col-md-3 col-sm-6">
-						<a class="banner banner-1" href="#">
-							<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-							<div class="banner-caption text-center">
-								<h2 class="white-color">NEW COLLECTION</h2>
-							</div>
-						</a>
-					</div>
-					<!-- /banner -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-	</div>
-	<!-- /HOME -->
-
-	<!-- section -->
+<!-- section -->
 	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<!-- banner -->
-				<div class="col-md-4 col-sm-6">
-					<a class="banner banner-1" href="#">
-						<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-						<div class="banner-caption text-center">
-							<h2 class="white-color">New Post</h2>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
-
-				<!-- banner -->
-				<div class="col-md-4 col-sm-6">
-					<a class="banner banner-1" href="#">
-						<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-						<div class="banner-caption text-center">
-							<h2 class="white-color">New Post</h2>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
-
-				<!-- banner -->
-				<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
-					<a class="banner banner-1" href="#">
-						<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-						<div class="banner-caption text-center">
-							<h2 class="white-color">New Post</h2>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
-
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /section -->
-
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!-- section title -->
+                				<!-- section title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h2 class="title">Most View Post</h2>
-						<div class="pull-right">
-							<div class="product-slick-dots-2 custom-dots">
-							</div>
-						</div>
+						<h2 class="title">BOOKS</h2>
 					</div>
 				</div>
 				<!-- section title -->
-
-				<!-- Product Single -->
-				<div class="col-md-3 col-sm-6 col-xs-6">
-					<div class="product product-single product-hot">
-						<div class="product-thumb">
-							<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-							<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-							<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-						</div>
-					</div>
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
 				</div>
-				<!-- /Product Single -->
+				<!-- /banner -->
 
-				<!-- Product Slick -->
-				<div class="col-md-9 col-sm-6 col-xs-6">
-					<div class="row">
-						<div id="product-slick-2" class="product-slick">
-							<!-- Product Single -->
-							<div class="product product-single">
-								<div class="product-thumb">
-									<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-									<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-									<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-								</div>
-							</div>
-							<!-- /Product Single -->
-
-							<!-- Product Single -->
-							<div class="product product-single">
-									<div class="product-thumb">
-										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-										<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-									</div>
-							</div>
-							<!-- /Product Single -->
-
-							<!-- Product Single -->
-							<div class="product product-single">
-									<div class="product-thumb">
-										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-										<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-									</div>
-							</div>
-							<!-- /Product Single -->
-							<div class="product product-single">
-									<div class="product-thumb">
-										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src=" {{url_for('static', filename='images/Booklarge.jpg')}}">
-										<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-									</div>
-							</div>
-						</div>
-					</div>
+                				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
 				</div>
-				<!-- /Product Slick -->
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Books.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
 			</div>
 			<!-- /row -->
 		</div>
@@ -199,7 +57,229 @@
 	</div>
 	<!-- /section -->
 
+    <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Laptop</h2>
+					</div>
+				</div>
+				<!-- section title -->
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Laptop.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
 
+                				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Laptop.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Laptop.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Laptop.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+    <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">ACCESSORIES</h2>
+					</div>
+				</div>
+				<!-- section title -->
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/banner09.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+                				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/banner09.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/banner09.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/banner09.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+    <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">ELECTRONICS</h2>
+					</div>
+				</div>
+				<!-- section title -->
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+                				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/electronics.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+    <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">FURNITURE</h2>
+					</div>
+				</div>
+				<!-- section title -->
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+                				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src=" {{url_for('static', filename='img/Furniture1.jpg')}}">
+						<h4 class="product-name"><a href="#">Post title</a></h4>
+					</a>
+				</div>
+				<!-- /banner -->
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
 
 	<!-- jQuery Plugins -->
 	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>

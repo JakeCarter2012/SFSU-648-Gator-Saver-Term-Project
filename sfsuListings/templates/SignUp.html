@@ -1,8 +1,17 @@
-<head>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-</head>
-{% extends "Layout.html" %}
+{% extends "Header.html" %}
 {% block content %}
+    	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Sign Up</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+    <br>
+
     <section class="login_area p_100">
     <div class="container">
                 <div class="login_inner">
@@ -40,7 +49,7 @@
                                     <input type="checkbox" name="termsCheckBox" >
                                     <label>I agree to the terms and conditions of use</label>
                                 </div>
-                                <div class="g-recaptcha col-lg-12 form-group" data-sitekey="6Ldu6noUAAAAAOUSLrWw-ddVEmiBP3wx6QnEtvyR"></div>
+
                                 <div class="col-lg-12 form-group">
                                     <button type="submit" value="submit" style ="background-color:#c0c0c0" class="btn subs_btn form-control">Create Account</button>
                                 </div>
@@ -50,5 +59,13 @@
                 </div>
     </div>
     </section>
-    
+    	<!-- jQuery Plugins -->
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/slick.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/nouislider.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.zoom.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
 {% endblock content %}

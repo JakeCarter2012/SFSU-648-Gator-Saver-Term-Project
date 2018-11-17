@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+        <title>Shop - {{ title }}</title>
+    {% else %}
+        <title>Shop</title>
+    {% endif %}
+    	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>SFSU Shop</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+    <!-- IndividualPost stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='IndividualPost.css') }}" />
+
+    <!-- CreatePost stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='CreatePost.css') }}" />
+
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea', toolbar: [
+    'undo redo | styleselect | bold italic | link image | alignleft aligncenter alignright',
+          'newdocument, undo, redo, cut, copy, paste, bold, italic, underline, strikethrough, subscript, superscript, removeformat, formats'
+  ],
+      menubar: false,
+  });
+  </script>
+
+
+</head>
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- top Header -->
+		<div id="top-header">
+			<div class="container">
+				<div class="pull-left">
+					<span>SFSU-Fulda Software Engineering Project CSC 648-848, Fall 2018.  For Demonstration Only</span>
+				</div>
+				<div class="pull-right">
+					<ul class="header-top-links">
+						<li><a href="http://www.sfsu.edu/">About US</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /top Header -->
+
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- Logo -->
+					<div class="header-logo">
+						<a class="logo" href="#">
+							<img src=" {{url_for('static', filename='img/logo.png')}}">
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Search -->
+					<div class="header-search">
+						<form>
+							<input class="input search-input" type="text" placeholder="Enter your keyword">
+							<select class="input search-categories">
+								<option value="0">All Categories</option>
+								<option value="1">Books </option>
+								<option value="2">CLOTHING </option>
+                                <option value="3">Accessories </option>
+                                <option value="4">Electronics </option>
+                                <option value="5">Furniture </option>
+							</select>
+							<button class="search-btn"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+					<!-- /Search -->
+				</div>
+				<div class="pull-right">
+					<ul class="header-btns">
+						<!-- Account -->
+						<li class="header-account dropdown default-dropdown">
+							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-user-o"></i>
+								</div>
+								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+							</div>
+							<a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+							<ul class="custom-menu">
+								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+								<li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
+								<li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+							</ul>
+						</li>
+						<!-- /Account -->
+
+						<!-- Mobile nav toggle-->
+						<li class="nav-toggle">
+							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+						</li>
+						<!-- / Mobile nav toggle -->
+					</ul>
+				</div>
+			</div>
+			<!-- header -->
+		</div>
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+    <div class="welcome-banner"> Welcome to our Shop, where SFSU students can buy and sell to each other! </div>
+
+
+{% block content %}{% endblock content %}

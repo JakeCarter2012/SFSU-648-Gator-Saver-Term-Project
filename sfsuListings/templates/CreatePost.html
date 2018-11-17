@@ -1,23 +1,29 @@
-{% extends "Layout.html" %}
+{% extends "Header.html" %}
 {% block content %}
-<head>
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='CreatePost.css') }}" />
-</head>
+
+    <div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Creating Post</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+    <br>
 <div class="container-fluid">
   <h1 align="center">Create a Listing</h1>
   <div class="row">
     <!-- Left Spacer -->
     <div class="col-sm-2"></div>
-	
-    
-	
+
 		<div class="container2">
 		<form action="/action_page.php" method="post">
-		
+
 			<!-- title -->
 			<label for="Title">Title:</label>
 			<input type="text" name="title"  ><br>
-			
+
 			<!-- category -->
 			<label for="Category">Category:</label>
 				<select>
@@ -27,34 +33,29 @@
 				  <option value="Misc">Misc</option>
 				</select>
 			<br>
-			
+
 			<!-- price -->
-			<label for="Price">Price:</label> 
+			<label for="Price">Price:</label>
 			<input type="text" name="price"  size="48"><br>
-			
+
 			<!-- description -->
 			<label for="Description">Description:</label>
-			<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea><br>
-			
-			<!-- images --> 
+			<textarea id="mytextarea"> Write something..</textarea><br>
+
+			<!-- images -->
 			<label for="Images">Images: (select up to 5 images)</label> <!-- Will need to do scripting to limit upload file count!!!-->
 			<input type="file" name="img" multiple ><br>
-			
-			
-			
-			
+
+
 			<!-- submit button -->
 			<div class="button" align="left">
 			<button type="submit" size="48">Create Listing</button>
 			<button type="submit" name="cancel" size="48">Cancel</button>
 			</div>
-			
-			
+
 		</form>
 		</div>
-	
-	
-	
+
 	<!-- Right Spacer -->
     <div class="col-sm-2"></div>
   </div>
