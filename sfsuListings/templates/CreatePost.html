@@ -1,18 +1,9 @@
 {% extends "Header.html" %}
 {% block content %}
 
-    <div id="breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li class="active">Creating Post</li>
-			</ul>
-		</div>
-	</div>
-	<!-- /BREADCRUMB -->
-    <br>
+    
 <div class="container-fluid">
-  <h1 align="center">Create a Listing</h1>
+  <h1 align="center">Create a Post</h1>
   <div class="row">
     <!-- Left Spacer -->
     <div class="col-sm-2"></div>
@@ -22,9 +13,9 @@
 
 			<!-- title -->
 			<label for="Title">Title:</label>
-			<input type="text" name="title"  ><br>
+			<input type="text" name="title" required ><br>
 
-			<!-- category -->
+			<!-- categories for the post -->
 			<label for="Category">Category:</label>
 				<select>
 				  <option value="Books">Books</option>
@@ -34,25 +25,25 @@
 				</select>
 			<br>
 
-			<!-- price -->
+			<!-- Price Input -->
 			<label for="Price">Price:</label>
-			<input type="text" name="price"  size="48"><br>
+			<input type="text" name="price"  size="48" required><br>
 
-			<!-- description -->
+			<!-- Description Input: Item's condition, when it was bought, etc -->
 			<label for="Description">Description:</label>
 			<textarea id="mytextarea"> Write something..</textarea><br>
 
-			<!-- images -->
+			<!-- Uploading images with an image count limit -->
 			<label for="Images">Images: (select up to 5 images)</label> <!-- Will need to do scripting to limit upload file count!!!-->
 			<input type="file" name="img" multiple ><br>
 
-
-			<!-- submit button -->
+			<h5>Note: It may take up to 24 hours for approval of your post request.</h5>
+			<!-- submit button --> <!-- Will need to code in mandatory fields and reject from going to the next page if fields not completed-->
 			<div class="button" align="left">
-			<button type="submit" size="48">Create Listing</button>
+			<button type="submit" size="48">Create Post</button>
 			<button type="submit" name="cancel" size="48">Cancel</button>
 			</div>
-
+			
 		</form>
 		</div>
 
