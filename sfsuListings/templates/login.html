@@ -1,18 +1,6 @@
 {% extends "Header.html" %}
 {% block content %}
 
-    	<!-- BREADCRUMB -->
-	<div id="breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li class="active">Login Page</li>
-			</ul>
-		</div>
-	</div>
-	<!-- /BREADCRUMB -->
-    <br>
-
 <section class="login_area p_100">
             <div class="container">
                 <div class="login_inner">
@@ -38,7 +26,10 @@
                                     <input class="form-control" type="Password" placeholder="Password" name="password">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <h4>Forgot your password ?</h4>
+                                    <p>Forgot your password ? <a href="#" style="color:blue">Click here!</a></p>
+                                </div>
+                                <div>
+                                    <a href="/SignUp" style="color:blue">New user? Register here!</a>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <button type="submit" value="submit" style ="background-color:#c0c0c0"class="btn update_btn form-control">Login</button>
