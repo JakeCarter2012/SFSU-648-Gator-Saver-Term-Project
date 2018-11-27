@@ -1,17 +1,8 @@
+<head>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
 {% extends "Header.html" %}
 {% block content %}
-    	<!-- BREADCRUMB -->
-	<div id="breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li class="active">Sign Up</li>
-			</ul>
-		</div>
-	</div>
-	<!-- /BREADCRUMB -->
-    <br>
-
     <section class="login_area p_100">
     <div class="container">
                 <div class="login_inner">
@@ -43,29 +34,20 @@
                                     <input class="form-control" type="password" placeholder="Re-Password" name="repassword">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <label>By creating an account, you agree to our <a href="/termsOfService" style="color:blue" target="_blank"> terms and conditions of use.</a> </label>
-                                </div>
-                                <div class="col-lg-12 form-group">
-                                    <input type="checkbox" name="termsCheckBox" >
-                                    <label>I agree to the terms and conditions of use</label>
-                                </div>
+                                    <p>By creating an account, you agree to our <a href="/termsOfService" style="color:blue" target="_blank"> terms and conditions of use.</a> </p>
+                                <div>
+                                    <p><input type="checkbox" style="width: 5%"name="termsCheckBox" >I agree to the terms and conditions of use</p>
+                                </div></div>
                                 <div class="g-recaptcha col-lg-12 form-group" data-sitekey="6Ldu6noUAAAAAOUSLrWw-ddVEmiBP3wx6QnEtvyR"></div>
                                 <div class="col-lg-12 form-group">
                                     <button type="submit" value="submit" style ="background-color:#c0c0c0" class="btn subs_btn form-control">Create Account</button>
                                 </div>
+                                <a href="/login" style="color:blue">Already have an account? Login here!</a>
                             </form>
                         </div>
                     </div>
                 </div>
     </div>
     </section>
-    	<!-- jQuery Plugins -->
-	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/slick.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/nouislider.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/jquery.zoom.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-</html>
+    
 {% endblock content %}
