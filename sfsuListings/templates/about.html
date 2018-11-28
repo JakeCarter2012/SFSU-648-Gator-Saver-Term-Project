@@ -1,4 +1,4 @@
-{% extends "Layout.html" %}
+{% extends "Header.html" %}
 {% block content %}
 
 <!doctype html>
@@ -10,20 +10,19 @@
     
     <body>
         <h1>About Us</h1>
-        <a href="{{ url_for('jake') }}"> About Jake</a>
+        <a href="{{ url_for('about_page.jake') }}"> About Jake</a>
         <br>
-        <a href="{{ url_for('gary') }}"> About Gary</a>
+        <a href="{{ url_for('about_page.gary') }}"> About Gary</a>
         <br>
-        <a href="{{ url_for('martin') }}"> About Martin</a>
+        <a href="{{ url_for('about_page.martin') }}"> About Martin</a>
         <br>
-        <a href="{{ url_for('gordon') }}"> About Gordon</a>
+        <a href="{{ url_for('about_page.gordon') }}"> About Gordon</a>
         <br>
-        <a href="{{ url_for('wagner') }}">About Wagner</a>
+        <a href="{{ url_for('about_page.wagner') }}">About Wagner</a>
         <br>
-        <a href="{{ url_for('tina') }}">About Tina</a>
+        <a href="{{ url_for('about_page.tina') }}">About Tina</a>
         <br>
-        <a href="{{ url_for('alvin') }}">About Alvin</a>
+        <a href="{{ url_for('about_page.alvin') }}">About Alvin</a>
     </body>
 </html>
-
 {% endblock content %}
