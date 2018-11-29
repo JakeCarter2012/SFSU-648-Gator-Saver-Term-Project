@@ -1,0 +1,55 @@
+{% extends "Header.html" %}
+{% block content %}
+
+    
+<div class="container-fluid">
+  <h1 align="center">Create a Post</h1>
+  <div class="row">
+    <!-- Left Spacer -->
+    <div class="col-sm-2"></div>
+
+		<div class="container2">
+		<form action="/action_page.php" method="post">
+
+			<!-- title -->
+			<label for="Title">Title:</label>
+			<input type="text" name="title" required ><br>
+
+			<!-- categories for the post -->
+			<label for="Category">Category:</label>
+				<select>
+				  <option value="Books">Books</option>
+				  <option value="Electronics">Electronics</option>
+				  <option value="Furniture">Furniture</option>
+				  <option value="Misc">Misc</option>
+				</select>
+			<br>
+
+			<!-- Price Input -->
+			<label for="Price">Price:</label>
+			<input type="text" name="price"  size="48" required><br>
+
+			<!-- Description Input: Item's condition, when it was bought, etc -->
+			<label for="Description">Description:</label>
+			<textarea id="mytextarea"></textarea><br>
+
+			<!-- Uploading images with an image count limit -->
+			<label for="Images">Images: (select up to 5 images)</label> <!-- Will need to do scripting to limit upload file count!!!-->
+			<input type="file" name="img" multiple ><br>
+
+			<h5>Note: It may take up to 24 hours for approval of your post request.</h5>
+			<!-- submit button --> <!-- Will need to code in mandatory fields and reject from going to the next page if fields not completed-->
+			<div class="button" align="left">
+			<button type="submit" size="48">Create Post</button>
+			<button type="submit" name="cancel" size="48">Cancel</button>
+			</div>
+			
+		</form>
+		</div>
+
+	<!-- Right Spacer -->
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+
+{% endblock content %}
