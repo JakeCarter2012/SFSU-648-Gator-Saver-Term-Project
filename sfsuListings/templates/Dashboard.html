@@ -1,0 +1,129 @@
+{% extends "Layout.html" %}
+{% block content %}
+
+
+    <script>
+
+    /* function to change tab */
+function changetab(evt, Name) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+
+
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(Name).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+/* opens messages*/
+function OpenMessage() {
+    var x = document.getElementById("Message1");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+
+<head>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}" />
+</head>
+
+<div class="container-fluid">
+  <h1 align="center">[Listing Name]</h1>
+
+
+    <!-- Side bar -->
+<div class="column side">
+
+    <!-- Message and Post buttons -->
+  <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
+  <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
+
+
+    <!-- Sort Dropdown -->
+    <select>
+    <option value="">Sort by</option>
+    <option value="ListingName">Listing Name</option>
+    <option value="Date">Date</option>
+</select>
+    <br><br>
+
+    <!-- Message table -->
+  <div id="Messages" class="tabcontent">
+
+  <table>
+      <td>Image:&nbsp;&nbsp;&nbsp;</td> <td>Listing Name:&nbsp;&nbsp;</td> <td>Message:&nbsp;&nbsp;</td>
+   <tr><td>Image thumbnail goes here</td> <td>Toaster </td> <td>Hello, I would like to buy... </td></tr>
+      <tr><td>Image thumbnail goes here</td> <td>Sofa </td> <td>Hi, I was wondering if I could... </td></tr>
+  <tr><td>Image thumbnail goes here</td> <td>Biology Textbook </td> <td>I was wanting to buy your... </td></tr>
+  </table>
+  </div>
+
+    <!-- Post Table -->
+  <div id="Posts" class="tabcontent">
+  <table>
+  <td>Image:&#09;&#09;&#09;</td> <td>Listing Name:</td>
+  <tr><td>Image thumbnail goes here</td> <td>Selling Laptop </td> </tr>
+  <tr><td>Image thumbnail goes here</td> <td>Nike Shoes</td> </tr>
+  <tr><td>Image thumbnail goes here</td> <td>Chair </td> </tr>
+      <tr><td>Image thumbnail goes here</td> <td>Sofa </td> </tr>
+      <tr><td>Image thumbnail goes here</td> <td>Video Game T-shirt </td> </tr>
+      <tr><td>Image thumbnail goes here</td> <td>Nintendo Wii</td> </tr>
+  </table>
+  </div>
+
+</div>
+  <div class="row">
+    <!-- Left Spacer -->
+
+    <div class="col-sm-2"></div>
+
+
+
+		<div class="container2">
+
+
+		<form action="/action_page.php" method="post">
+
+            <h1>Not Approved</h1>
+		<br>
+            <br>
+			<!-- images -->
+			<label for="Images">Images:</label><br><br><br>
+			
+			
+			<!-- category -->
+			<label for="Category">Category:</label><br>
+			
+			
+			<!-- price -->
+			<label for="Price">Price:</label><br> 
+			
+			
+			<!-- description -->
+			<label for="Description">Description:</label><br><br><br>
+			
+
+			
+			
+			<!-- Cancel button -->
+            <div><button>Cancel Listing</button></div>
+
+		</form>
+		</div>
+	
+	
+	
+	<!-- Right Spacer -->
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+{% endblock content %}
