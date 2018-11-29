@@ -251,7 +251,7 @@ textarea.input {
 .header-search {
   display: inline-block;
   padding: 15px 0px;
-  max-width: 400px;
+  width: 550px;
 }
 
 .header-search>form {
@@ -698,4 +698,14 @@ textarea.input {
   color: #F8694A;
 }
 
+.login {
+  color: purple;
+  font-size: 30px;
+  margin-top: 15px;
+}
 
+.about-banner {
+  text-align: center;
+  color: black;
+  font-size: 18px;
+}

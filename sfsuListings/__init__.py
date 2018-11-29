@@ -3,7 +3,7 @@ import base64
 
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, flash, redirect, render_template, request, session, abort, g
+from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
@@ -13,9 +13,13 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import json
 
-database_file = "sqlite:///postdatabase.db"
+from sfsuListings.about_page import about_page
+
+database_file = "sqlite:////postdatabase.db"
 
 app = Flask(__name__)
+
+app.register_blueprint(about_page)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
@@ -73,7 +77,7 @@ def index():
 @app.route('/results', methods=["GET", "POST"])
 def results():
     path = "/var/www/sfsuListings/sfsuListings/"
-    con = sqlite3.connect(path + "postdatabase.db")  # connects to the database
+    con = sqlite3.connect("postdatabase.db")  # connects to the database
     con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
     cur = con.cursor()
     search = request.form["search"]  # gets data from search bar
@@ -87,7 +91,7 @@ def results():
         i = row['id']
         l[j] = "item" + str(row['id']) + ".jpg"
 
-        filename = path + 'static/item' + str(i) + '.jpg'
+        filename ='static/item' + str(i) + '.jpg'
         if (row['image'] != None):  # if the image is not null
             userImage = open(filename, 'wb')
             userImage.write(row[
@@ -218,46 +222,6 @@ def DashboardMessage():
 @app.route('/AdminDashboard')
 def AdminDashboard():
     return render_template('AdminDashboard.html')
-
-# about page
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/jake')
-def jake():
-    return render_template('aboutJake.html')
-
-
-@app.route('/gary')
-def gary():
-    return render_template('garyd.html')
-
-
-@app.route('/martin')
-def martin():
-    return render_template('MartinLeeAboutPage.html')
-
-
-@app.route('/wagner')
-def wagner():
-    return render_template('WagnerAbout.html')
-
-
-@app.route('/gordon')
-def gordon():
-    return render_template('Gordon about page.html')
-
-
-@app.route('/tina')
-def tina():
-    return render_template('About Tina.html')
-
-
-@app.route('/alvin')
-def alvin():
-    return render_template('aboutAlvin.html')
 
 
 @app.errorhandler(500)
