@@ -90,10 +90,15 @@ def results():
     con = sqlite3.connect("postdatabase.db") # connects to the database
     con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
     cur = con.cursor()
-    search = request.form["search"]  # gets data from search bar
-    cur.execute("select * from Posts where category like ?",
-                (search + '%',))  # searches from posts table and matches search result to category
-    result = cur.fetchall()  # retrieves list of queried items and stores it in result
+    nameSearch = request.form["search"]  # gets data from search bar
+    category = request.form["categories"] 
+    if category != "all":
+        cur.execute("select * from Posts where name like ? and category like ?",
+                    (nameSearch + '%', category,))  # searches from posts table and matches search result to category
+    else:    
+        cur.execute("select * from Posts where category like ? ",
+                    (nameSearch + '%',)) 
+    result = cur.fetchall()            
     # filename to write blob info into
     l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
     for row in result:
@@ -107,7 +112,7 @@ def results():
             userImage.write(row[
                                 'image'])  # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
 
-    return render_template('PostSearch.html', searchQuery=result, search=search,
+    return render_template('PostSearch.html', searchQuery=result, search=nameSearch,
                            list=l)  # renders results.html, searchQuery is the list of items from database
 
 
