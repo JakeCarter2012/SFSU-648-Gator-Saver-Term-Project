@@ -1,5 +1,6 @@
 *.wsgi
-*.DS_Store
-*.vscode
-*.idea
+**.DS_Store
+**.vscode
+**.idea
+**__pycache__/
 
