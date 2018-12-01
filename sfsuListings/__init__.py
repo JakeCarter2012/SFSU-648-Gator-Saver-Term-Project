@@ -17,7 +17,7 @@ import json
 
 from sfsuListings.about_page import about_page
 
-database_file = "sqlite:////postdatabase.db"
+database_file = "sqlite:///postdatabase.db"
 
 app = Flask(__name__)
 
@@ -60,7 +60,7 @@ to compare passwords the check_password fuction must be called
 
 class RegisteredUser(db.Model):
     UserName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
-    password_hash = db.Column(db.String(96), unique=True, nullable=False, primary_key=False)
+    password_hash = db.Column(db.String(96), unique=False, nullable=False, primary_key=False)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
