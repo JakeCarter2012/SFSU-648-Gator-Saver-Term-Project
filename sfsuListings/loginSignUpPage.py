@@ -5,6 +5,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 import os
 
+
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+import json
+
 database_file = "sqlite:///postdatabase.db"
 
 loginSignUpPage = Blueprint('loginSignUpPage', __name__, template_folder='templates')
@@ -13,6 +18,10 @@ login = Flask(__name__)
 
 db = SQLAlchemy(login)
 
+'''    
+Class for registered user; note that password is hashed
+to compare passwords the check_password fuction must be called
+'''
 class RegisteredUser(db.Model):
     UserName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
     password_hash = db.Column(db.String(96), unique=True, nullable=False, primary_key=False)
