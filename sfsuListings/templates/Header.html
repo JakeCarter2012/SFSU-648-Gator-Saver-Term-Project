@@ -78,9 +78,10 @@
 
 					<!-- Search -->
 					<div class="header-search">
-						<form>
-							<input class="input search-input" type="text" placeholder="">
-							<select class="input search-categories">
+						<form method="POST" action="{{ url_for('results') }}" target="_blank">
+							<input class="input search-input" type="search" name = "search" maxlength = "150" placeholder="Search" >
+							
+							<select class="input search-categories" id="inlineFormCustomSelect">
 								<option value="0">All Categories</option>
 								<option value="1">Books </option>
 								<option value="2">Clothing </option>
@@ -88,7 +89,7 @@
                                 <option value="4">Electronics </option>
                                 <option value="5">Furniture </option>
 							</select>
-							<button class="search-btn"><i class="fa fa-search"></i></button>
+							<button class="search-btn" type="submit" id="submitbtn" value = "search"><i class="fa fa-search"></i></button>
 						</form>
 					</div>
 					<!-- /Search -->
