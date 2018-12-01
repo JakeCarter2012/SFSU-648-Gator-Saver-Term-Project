@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 import os
 
-database_file = "sqlite:////postdatabase.db"
+database_file = "sqlite:///postdatabase.db"
 
 loginSignUpPage = Blueprint('loginSignUpPage', __name__, template_folder='templates')
 
