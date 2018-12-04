@@ -36,10 +36,11 @@ app.config['SECRET_KEY'] = os.urandom(24)
 class Posts(db.Model):
     name = db.Column(db.String(80), unique=False, nullable=False, primary_key=True)
     author = db.Column(db.String(80), unique=False, nullable=True, primary_key=True)
-    id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=False, autoincrement=True)
     price = db.Column(db.INTEGER, unique=False, nullable=False, primary_key=True)
     image = db.Column(db.BLOB, unique=False, nullable=True, primary_key=False)
+    id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True)
     category = db.Column(db.String(80), unique=False, nullable=False, primary_key=False)
+    approval = db.Column(db.String(20), unique=False, nullable=False, primary_key=False)
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
@@ -52,7 +53,7 @@ class Posts(db.Model):
 
 class Admin(db.Model):
     AdminName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
-    password_hash = db.Column(db.String(96), unique=True, nullable=False, primary_key=False)
+    password_hash = db.Column(db.String(96), unique=False, nullable=False, primary_key=False)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
@@ -62,10 +63,10 @@ class Admin(db.Model):
         return "<Hashed Password: {}".format(self.password_hash)
 
 class Messages(db.Model):
-    id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True, autoincrement=True)
+    id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True)
     sentFrom = db.Column(db.String(30), unique=False, nullable=False, primary_key=False)
     sentTo = db.Column(db.String(30), unique=False, nullable=False, primary_key=False)
-    postId = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=False)
+    postId = db.Column(db.INTEGER, unique=False, nullable=False, primary_key=False)
     message = db.Column(db.String(300), unique=False, nullable=False, primary_key=False)
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
 
@@ -82,8 +83,7 @@ def index():
     con = sqlite3.connect("postdatabase.db") # connects to the database
     con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
     cur = con.cursor()
-    cur.execute("select * from Posts where category like ?",
-                ('%',))
+    cur.execute("select * from Posts where category like ?", ('%',))
     result = cur.fetchmany(4)
     l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
     for row in result:
@@ -130,6 +130,21 @@ def results():
 
     return render_template('PostSearch.html', searchQuery=result, search=nameSearch,
                            list=l)  # renders results.html, searchQuery is the list of items from database
+
+@app.route('/blueprint')
+def pageBlueprint():
+    #To query: tablename.query.filterby(column name= thing to be filtered by)
+    postResults = Posts.query.filter_by(category="electronics")
+
+    return render_template('blueprint.html', results=postResults)
+    '''
+    To add something to the db, first create the object 
+    last = Posts.query.all()
+    lastId = last[-1].id + 1;
+    post = Posts(name = "example", author = "bob", id=lastId, price = 4, category = "example")
+    db.session.add(post)
+    db.session.commit()
+    '''
 
 
 
@@ -188,4 +203,3 @@ if __name__ == '__main__':
     app.config['SQLALCHEMY_ECHO'] = True  # Show SQL commands created
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     app.run()
-

@@ -24,10 +24,10 @@ to compare passwords the check_password fuction must be called
 '''
 class RegisteredUser(db.Model):
     UserName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
-    password_hash = db.Column(db.String(96), unique=True, nullable=False, primary_key=False)
+    password_hash = db.Column(db.String(96), unique=False, nullable=False, primary_key=False)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password_hash, password + 'sfsu')
 
     def __repr__(self):
         return "<Username: {}>".format(self.UserName)
@@ -108,9 +108,10 @@ def register():
         return redirect('/SignUp')
 
     newUser = RegisteredUser(UserName=request.form['username'],
-                             password_hash=generate_password_hash(request.form['password']))
+                             password_hash=generate_password_hash(request.form['password'] + 'sfsu'))
     db.session.add(newUser)
     db.session.commit()
     session['logged_in'] = True
     session['user_name'] = request.form['username']
     return redirect('/')
+    #To see if a user is logged/ get their username: use session['logged_in'] and session['user_name']
