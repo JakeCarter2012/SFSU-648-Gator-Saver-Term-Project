@@ -11,16 +11,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 import os
 
-from sfsuListings.aboutPage import aboutPage
-from sfsuListings.loginSignUpPage import loginSignUpPage
-
+from aboutPage import aboutPage
+from loginSignUpPage import loginSignUpPage
+from results import searchResults
 database_file = "sqlite:///postdatabase.db"
 
 app = Flask(__name__)
 
 app.register_blueprint(aboutPage)
 app.register_blueprint(loginSignUpPage)
-
+app.register_blueprint(searchResults)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
 db = SQLAlchemy(app)
@@ -83,8 +83,8 @@ def index():
     con = sqlite3.connect("postdatabase.db") # connects to the database
     con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
     cur = con.cursor()
-    cur.execute("select * from Posts where category like ?", ('%',))
-    result = cur.fetchmany(4)
+    cur.execute("select * from Posts order by date desc")
+    result = cur.fetchmany(8)
     l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
     for row in result:
         j = row['id']
@@ -99,38 +99,6 @@ def index():
 
     return render_template('HomePage.html', searchResult = result, list = l)
     
-
-@app.route('/results', methods=["GET", "POST"])
-def results():
-    path = "/var/www/sfsuListings/sfsuListings/"
-    con = sqlite3.connect("postdatabase.db") # connects to the database
-    con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
-    cur = con.cursor()
-    nameSearch = request.form["search"]  # gets data from search bar
-    category = request.form["categories"] 
-    if category != "all":
-        cur.execute("select * from Posts where name like ? and category like ?",
-                    (nameSearch + '%', category,))  # searches from posts table and matches search result to category
-    else:    
-        cur.execute("select * from Posts where category like ? ",
-                    (nameSearch + '%',)) 
-    result = cur.fetchall()            
-    # filename to write blob info into
-    l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
-    for row in result:
-        j = row['id']
-        i = row['id']
-        l[j] = "item" + str(row['id']) + ".jpg"
-
-        filename ='static/item' + str(i) + '.jpg'
-        if (row['image'] != None):  # if the image is not null
-            userImage = open(filename, 'wb')
-            userImage.write(row[
-                                'image'])  # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
-
-    return render_template('PostSearch.html', searchQuery=result, search=nameSearch,
-                           list=l)  # renders results.html, searchQuery is the list of items from database
-
 @app.route('/blueprint')
 def pageBlueprint():
     #To query: tablename.query.filterby(column name= thing to be filtered by)

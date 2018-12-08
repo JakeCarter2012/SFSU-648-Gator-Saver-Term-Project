@@ -41,11 +41,11 @@
 					</div>
 					<!-- /store top filter -->
 					
-					{% for item in searchQuery%}
+					
 					<!-- STORE -->
 					<div id="store">
 						<!-- row -->
-		
+						{% for item in searchQuery%}
 							<!-- Product Single -->
 							<div class="col-md-4 col-sm-6">
 								<div class="product product-single">
@@ -61,11 +61,12 @@
 									</div>
 								</div>
 							</div>
+							{% else %}
+                          <h1> No search results were found for {{search}}.</h1>
+							{% endfor %}
 					</div>
 					<!-- /STORE -->
-					{% else %}
-                          <h1> No search results were found for {{search}}.</h1>
-					{% endfor %}
+					
     <br>
     <br>
     <br>
