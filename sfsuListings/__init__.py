@@ -137,6 +137,7 @@ def pageBlueprint():
     postResults = Posts.query.filter_by(category="electronics")
 
     return render_template('blueprint.html', results=postResults)
+
     '''
     To add something to the db, first create the object 
     last = Posts.query.all()
