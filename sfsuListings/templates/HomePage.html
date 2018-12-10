@@ -19,15 +19,18 @@
 				{%for item in searchResult%}
 				<div class="col-md-3 col-sm-6">
 					<a class="banner banner-1" href="#">
-						<img src="{{ url_for('static', filename='')}}{{list[item.id]}}" width = 200 height = 200>
+						{%if item.image is defined %}
+                          <img src="../images/{{item.image}}"  width = 200 height = 200>
+                          {% endif %}
 						<h4 class="product-name"><a href="#">{{item.name}}</a></h4>
 					</a>
 				</div>
 				{% else %}
                           <h1> No search results were found for {{search}}.</h1>
 				{% endfor %}
-				
-				
+			</div>
+		</div>
+	</div>
 	<!-- /section -->
 
 	<!-- jQuery Plugins -->

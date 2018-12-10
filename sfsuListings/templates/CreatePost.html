@@ -9,43 +9,43 @@
     <div class="col-sm-2"></div>
 
 		<div class="container2">
-		<form action="/action_page.php" method="post">
+			<form action="" target="_blank" method="post" enctype="multipart/form-data">
 
-			<!-- title -->
-			<label>Title:</label>
-			<input type="text" name="title" required pattern="[a-zA-Z0-9\s]+"><br>
+				<!-- title -->
+				<label>Title:</label>
+				<input type="text" name="title" required pattern="[a-zA-Z0-9\s]+"><br>
 
-			<!-- categories for the post -->
-			<label>Category:</label>
-				<select name="category">
-				  <option value="Books">Books</option>
-				  <option value="Electronics">Electronics</option>
-				  <option value="Furniture">Furniture</option>
-				  <option value="Clothing">Clothing</option>
-				  <option value="Misc">Misc</option>
-				</select>
-			<br>
+				<!-- categories for the post -->
+				<label>Category:</label>
+					<select name="category">
+					  <option value="Books">Books</option>
+					  <option value="Electronics">Electronics</option>
+					  <option value="Furniture">Furniture</option>
+					  <option value="Clothing">Clothing</option>
+					  <option value="Misc">Misc</option>
+					</select>
+				<br>
 
-			<!-- Price Input -->
-			<label>Price:</label>
-			<input type="number" step="0.01" name="price"  size="48" required><br>
+				<!-- Price Input -->
+				<label>Price:</label>
+				<input type="number" step="0.01" name="price"  size="48" required><br>
 
-			<!-- Description Input: Item's condition, when it was bought, etc -->
-			<label>(Optional) Description:</label>
-			<textarea  name="description" maxlength="200" style="width:50%; height:90px; resize:none;"></textarea><br>
+				<!-- Description Input: Item's condition, when it was bought, etc -->
+				<label>(Optional) Description:</label>
+				<textarea  name="description" maxlength="200" style="width:50%; height:90px; resize:none;"></textarea><br>
 
-			<!-- Uploading image -->
-			<label>Image:</label>
-			<input type="file" name="img"><br>
+				<!-- Uploading image -->
+				<label>(Optional) Image:</label>
+				<input type="file" name="img"><br>
 
-			<h5>Note: It may take up to 24 hours for approval of your post request.</h5>
-			<!-- submit button --> <!-- Will need to code in mandatory fields and reject from going to the next page if fields not completed-->
-			<div class="button" align="left">
-			<button type="submit" size="48">Create Post</button>
-			<button type="submit" name="cancel" size="48">Cancel</button>
-			</div>
-			
-		</form>
+				<h5>Note: It may take up to 24 hours for approval of your post request.</h5>
+				<!-- submit button --> <!-- Will need to code in mandatory fields and reject from going to the next page if fields not completed-->
+				<div class="button" align="left">
+				<button type="submit" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Create Post</button>
+				<button type="button" onclick="location.href='/';" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Cancel</button>
+				</div>
+
+			</form>
 		</div>
 
 	<!-- Right Spacer -->

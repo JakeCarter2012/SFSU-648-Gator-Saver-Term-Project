@@ -5,22 +5,28 @@ import sqlite3
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
-from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint
+from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for
 
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import  secure_filename
 from flask_migrate import Migrate
 import os
 
-from aboutPage import aboutPage
-from loginSignUpPage import loginSignUpPage
-from results import searchResults
+from sfsuListings.aboutPage import aboutPage
+from sfsuListings.loginSignUpPage import loginSignUpPage
+from sfsuListings.results import searchResults
+from sfsuListings.createPost import createPost
 database_file = "sqlite:///postdatabase.db"
+
+UPLOAD_FOLDER = '/images'
+ALLOWED_EXTENSIONS = set(['jpg', 'png'])
 
 app = Flask(__name__)
 
 app.register_blueprint(aboutPage)
 app.register_blueprint(loginSignUpPage)
 app.register_blueprint(searchResults)
+app.register_blueprint(createPost)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
 db = SQLAlchemy(app)
@@ -35,9 +41,10 @@ app.config['SECRET_KEY'] = os.urandom(24)
 # model class
 class Posts(db.Model):
     name = db.Column(db.String(80), unique=False, nullable=False, primary_key=True)
-    author = db.Column(db.String(80), unique=False, nullable=True, primary_key=True)
-    price = db.Column(db.INTEGER, unique=False, nullable=False, primary_key=True)
-    image = db.Column(db.BLOB, unique=False, nullable=True, primary_key=False)
+    author = db.Column(db.String(80), unique=False, nullable=True, primary_key=False)
+    price = db.Column(db.REAL, unique=False, nullable=False, primary_key=False)
+    description = db.Column(db.String(300), unique=False, nullable=False, primary_key=False)
+    image = db.Column(db.String(80), unique=False, nullable=True, primary_key=False)
     id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True)
     category = db.Column(db.String(80), unique=False, nullable=False, primary_key=False)
     approval = db.Column(db.String(20), unique=False, nullable=False, primary_key=False)
@@ -85,6 +92,7 @@ def index():
     cur = con.cursor()
     cur.execute("select * from Posts order by date desc")
     result = cur.fetchmany(8)
+    """
     l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
     for row in result:
         j = row['id']
@@ -96,8 +104,8 @@ def index():
             userImage = open(filename, 'wb')
             userImage.write(row[
                                 'image'])  # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
-
-    return render_template('HomePage.html', searchResult = result, list = l)
+    """
+    return render_template('HomePage.html', searchResult = result)###, list = l)
     
 @app.route('/blueprint')
 def pageBlueprint():
@@ -115,8 +123,6 @@ def pageBlueprint():
     db.session.commit()
     '''
 
-
-
 @app.route('/logout')
 def logout():
     '''
@@ -130,12 +136,6 @@ def logout():
 @app.route('/IndividualPost')
 def IndividualPost():
     return render_template('IndividualPost.html')
-
-
-@app.route('/CreatePost')
-def CreatePost():
-    return render_template('CreatePost.html')
-
 
 @app.route('/termsOfService')
 def termsOfService():
