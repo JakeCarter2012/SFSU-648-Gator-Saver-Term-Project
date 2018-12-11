@@ -16,20 +16,23 @@
 			<!-- Display post's images -->
 			<label for="Images">Images:</label><br><br><br>
 
-
+			
+			<!-- Display post's date -->
+			<label for="Category">Date:</label>   {{post.date}}<br>
+			
 			<!-- Display post's category -->
 			<label for="Category">Category:</label>   {{post.category}}<br>
 
 
 			<!-- Display post's price -->
-			<label for="Price">Price: </label>   {{post.price}}<br>
+			<label for="Price">Price: </label>   $ {{post.price}}<br>
 
 
 			<!-- Display post's description -->
 			<label for="Description">Description: </label>   {{post.description}}<br><br><br>
 
 			<label for="Message">Message:</label>
-			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px" required></textarea><br>
+			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px; resize: none" required></textarea><br>
 
 
 
