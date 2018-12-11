@@ -25,7 +25,11 @@
                         {% for item in searchQuery%}
                            
                         <div class="col-md-3 col-sm-6">
-                          <img src="{{ url_for('static', filename='')}}{{list[item.id]}}"  width = 200 height = 200>
+
+						<!--<img src="{{ url_for('static', filename='')}}{{list[item.id]}}" width = 200 height = 200>-->
+                          {%if item.image is defined %}
+                          <img src="{{item.image}}"  width = 200 height = 200>
+                          {% endif %}
                           
                           
                           {%if item.name is defined %}
