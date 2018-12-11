@@ -3,7 +3,7 @@
 
       
 <div class="container-fluid">
-  <h1 align="center">[Post Name]</h1>
+  <h1 align="center">{{post.name}}</h1>
   <div class="row">
     <!-- Left Spacer -->
     <div class="col-sm-2"></div>
@@ -18,15 +18,15 @@
 
 
 			<!-- Display post's category -->
-			<label for="Category">Category:</label><br>
+			<label for="Category">Category:</label>   {{post.category}}<br>
 
 
 			<!-- Display post's price -->
-			<label for="Price">Price:</label><br>
+			<label for="Price">Price: </label>   {{post.price}}<br>
 
 
 			<!-- Display post's description -->
-			<label for="Description">Description:</label><br><br><br>
+			<label for="Description">Description: </label>   {{post.description}}<br><br><br>
 
 			<label for="Message">Message:</label>
 			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px" required></textarea><br>

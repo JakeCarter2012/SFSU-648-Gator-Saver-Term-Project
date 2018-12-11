@@ -133,9 +133,12 @@ def logout():
     return redirect('/')
 
 
-@app.route('/IndividualPost')
-def IndividualPost():
-    return render_template('IndividualPost.html')
+@app.route('/IndividualPost/<post_id>')
+def IndividualPost(post_id):
+	post_id = post_id
+	postResult = Posts.query.filter_by(id=post_id).first()
+	return render_template('IndividualPost.html', post = postResult)
+	
 
 @app.route('/termsOfService')
 def termsOfService():
