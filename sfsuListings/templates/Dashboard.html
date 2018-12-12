@@ -60,24 +60,48 @@ function OpenMessage() {
   <div id="Messages" class="tabcontent">
 
   <table>
-      <td>Image:&nbsp;&nbsp;&nbsp;</td> <td>Listing Name:&nbsp;&nbsp;</td> <td>Message:&nbsp;&nbsp;</td>
-   <tr><td>Image thumbnail goes here</td> <td>Toaster </td> <td>Hello, I would like to buy... </td></tr>
-      <tr><td>Image thumbnail goes here</td> <td>Sofa </td> <td>Hi, I was wondering if I could... </td></tr>
-  <tr><td>Image thumbnail goes here</td> <td>Biology Textbook </td> <td>I was wanting to buy your... </td></tr>
-  </table>
+<td>Message From:</td>
+<td> About Post:</td>
+
+                        {% for item in QueryMessage%}
+
+                          {%if item.sentFrom is defined %}
+                              {%if item.message is defined %}
+                                <!-- gets username who sent message from database  -->
+                              <tr> <td><a href = "/Dashboard/message/{{ item.id }}"> {{ item.sentFrom }}</a></td>
+                                <!-- gets message from database  -->
+                               <td>{{item.message}}</td>
+                              </tr>
+                                  {% endif %}
+                          {% endif %}
+
+
+
+                        {% endfor %}
+</table>
   </div>
 
     <!-- Post Table -->
   <div id="Posts" class="tabcontent">
-  <table>
-  <td>Image:&#09;&#09;&#09;</td> <td>Listing Name:</td>
-  <tr><td>Image thumbnail goes here</td> <td>Selling Laptop </td> </tr>
-  <tr><td>Image thumbnail goes here</td> <td>Nike Shoes</td> </tr>
-  <tr><td>Image thumbnail goes here</td> <td>Chair </td> </tr>
-      <tr><td>Image thumbnail goes here</td> <td>Sofa </td> </tr>
-      <tr><td>Image thumbnail goes here</td> <td>Video Game T-shirt </td> </tr>
-      <tr><td>Image thumbnail goes here</td> <td>Nintendo Wii</td> </tr>
-  </table>
+<table>
+<td>Post:</td>
+<td>Approval Status:</td>
+
+                        {% for item in QueryPosts%}
+
+                          {%if item.name is defined %}
+                              {%if item.category is defined %}
+                                  {%if item.approval is defined %}
+                                      <!-- gets post from database  -->
+                                  <tr> <td>  <a href = "/Dashboard/{{ item.id }}"> {{ item.name }}</a> </td>
+                                      <!-- gets approval status from database  -->
+                              <td>{{item.approval}}</td></tr>
+                                  {% endif %}
+                          {% endif %}
+{% endif %}
+
+                        {% endfor %}
+</table>
   </div>
 
 </div>
@@ -125,5 +149,6 @@ function OpenMessage() {
 	<!-- Right Spacer -->
     <div class="col-sm-2"></div>
   </div>
+
 </div>
 {% endblock content %}
