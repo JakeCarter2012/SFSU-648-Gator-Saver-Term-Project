@@ -139,9 +139,24 @@ def logout():
     return redirect('/')
 
 
-@app.route('/IndividualPost')
-def IndividualPost():
-    return render_template('IndividualPost.html')
+@app.route('/IndividualPost/<post_id>')
+def IndividualPost(post_id):
+	post_id = post_id
+	postResult = Posts.query.filter_by(id=post_id).first()
+	
+	
+	
+	if postResult is not None:
+		return render_template('IndividualPost.html', post = postResult)
+	
+	else:
+		return redirect('/')
+	
+
+@app.route('/IndividualPost/')
+def IndividualPostBad():
+	return redirect('/')
+
 
 
 @app.route('/termsOfService')
