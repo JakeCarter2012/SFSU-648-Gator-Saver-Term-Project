@@ -5,7 +5,7 @@ import sqlite3
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
-from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for
+from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for, send_file
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -128,6 +128,11 @@ def pageBlueprint():
     db.session.commit()
     '''
 
+@app.route('/images/<image>')
+def images(image):
+    image = image;
+    imgPath = os.path.join('images', image)
+    return send_file(imgPath)
 
 @app.route('/logout')
 def logout():
