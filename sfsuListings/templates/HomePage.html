@@ -18,7 +18,7 @@
 				
 				{%for item in searchResult%}
 				<div class="col-md-3 col-sm-6">
-					<a class="banner banner-1" href="#">
+					<a class="banner banner-1" href="/IndividualPost/{{item.id}}">
 						{%if item.image is defined %}
                           <img src="images/{{item.image}}"  width = 200 height = 200/>
                           {% endif %}

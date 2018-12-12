@@ -44,7 +44,6 @@
 					
 					<!-- STORE -->
 					<div id="store">
-						<hr>
 						<!-- row -->
 						{% for item in searchQuery%}
 							<!-- Product Single -->
@@ -60,7 +59,9 @@
 										{%if item.name is defined%}
 										<h2 class="product-name"><a href="#">{{item.name}}</a></h2>
 										{% endif %}
-										<button class="primary-btn"></i> Message Seller</button>
+										<a href="/IndividualPost/{{item.id}}">
+											<button class="primary-btn"></i> Message Seller</button>
+										</a>
 									</div>
 								</div>
 							</div>
