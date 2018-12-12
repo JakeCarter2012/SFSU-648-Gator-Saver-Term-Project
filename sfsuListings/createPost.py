@@ -12,7 +12,7 @@ import os
 createPost = Blueprint('createPost', __name__, template_folder='templates')
 
 UPLOAD_FOLDER = 'images'
-ALLOWED_EXTENSIONS = set(['jpg', 'png'])
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 
 login = Flask(__name__)
 

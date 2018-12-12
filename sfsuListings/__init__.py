@@ -74,6 +74,7 @@ class Messages(db.Model):
     sentFrom = db.Column(db.String(30), unique=False, nullable=False, primary_key=False)
     sentTo = db.Column(db.String(30), unique=False, nullable=False, primary_key=False)
     postId = db.Column(db.INTEGER, unique=False, nullable=False, primary_key=False)
+    postTitle = db.Column(db.String(80), unique=False, nullable=False, primary_key=False)
     message = db.Column(db.String(300), unique=False, nullable=False, primary_key=False)
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
 
@@ -82,6 +83,7 @@ class Messages(db.Model):
         return "sentTo: {}".format(self.sentTo)
         return "postId: {}".format(self.postId)
         return "message: {}".format(self.message)
+
 
 # index page
 @app.route('/', methods=["GET", "POST"])
