@@ -37,7 +37,9 @@
                           {% endif %}
 
                           {%if item.title is defined %}
+						  <a href = {{ url_for('IndividualPost')}}>
                           <p>{{item.title}}</p>
+						  </a>
                           {% endif %}
                          
                           {%if item.author is defined %}
