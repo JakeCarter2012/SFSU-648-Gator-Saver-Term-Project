@@ -5,22 +5,29 @@ import sqlite3
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
-from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint
+from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for, send_file
 
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from flask_migrate import Migrate
 import os
 
 from aboutPage import aboutPage
 from loginSignUpPage import loginSignUpPage
 from results import searchResults
+from createPost import createPost
+
 database_file = "sqlite:///postdatabase.db"
+
+UPLOAD_FOLDER = '/images'
+ALLOWED_EXTENSIONS = set(['jpg', 'png'])
 
 app = Flask(__name__)
 
 app.register_blueprint(aboutPage)
 app.register_blueprint(loginSignUpPage)
 app.register_blueprint(searchResults)
+app.register_blueprint(createPost)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
 db = SQLAlchemy(app)
@@ -35,9 +42,10 @@ app.config['SECRET_KEY'] = os.urandom(24)
 # model class
 class Posts(db.Model):
     name = db.Column(db.String(80), unique=False, nullable=False, primary_key=True)
-    author = db.Column(db.String(80), unique=False, nullable=True, primary_key=True)
-    price = db.Column(db.INTEGER, unique=False, nullable=False, primary_key=True)
-    image = db.Column(db.BLOB, unique=False, nullable=True, primary_key=False)
+    author = db.Column(db.String(80), unique=False, nullable=True, primary_key=False)
+    price = db.Column(db.REAL, unique=False, nullable=False, primary_key=False)
+    description = db.Column(db.String(300), unique=False, nullable=False, primary_key=False)
+    image = db.Column(db.String(80), unique=False, nullable=True, primary_key=False)
     id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True)
     category = db.Column(db.String(80), unique=False, nullable=False, primary_key=False)
     approval = db.Column(db.String(20), unique=False, nullable=False, primary_key=False)
@@ -51,6 +59,7 @@ class Posts(db.Model):
         return "<image: {}".format(self.image)
         return "<category: {}".format(self.category)
 
+
 class Admin(db.Model):
     AdminName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
     password_hash = db.Column(db.String(96), unique=False, nullable=False, primary_key=False)
@@ -61,6 +70,7 @@ class Admin(db.Model):
     def __repr__(self):
         return "<Username: {}>".format(self.UserName)
         return "<Hashed Password: {}".format(self.password_hash)
+
 
 class Messages(db.Model):
     id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True)
@@ -76,15 +86,17 @@ class Messages(db.Model):
         return "postId: {}".format(self.postId)
         return "message: {}".format(self.message)
 
+
 # index page
 @app.route('/', methods=["GET", "POST"])
 def index():
     path = "/var/www/sfsuListings/sfsuListings/"
-    con = sqlite3.connect("postdatabase.db") # connects to the database
+    con = sqlite3.connect("postdatabase.db")  # connects to the database
     con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
     cur = con.cursor()
     cur.execute("select * from Posts order by date desc")
     result = cur.fetchmany(8)
+    """
     l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
     for row in result:
         j = row['id']
@@ -96,12 +108,13 @@ def index():
             userImage = open(filename, 'wb')
             userImage.write(row[
                                 'image'])  # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
+    """
+    return render_template('HomePage.html', searchResult=result)  ###, list = l)
 
-    return render_template('HomePage.html', searchResult = result, list = l)
-    
+
 @app.route('/blueprint')
 def pageBlueprint():
-    #To query: tablename.query.filterby(column name= thing to be filtered by)
+    # To query: tablename.query.filterby(column name= thing to be filtered by)
     postResults = Posts.query.filter_by(category="electronics")
 
     return render_template('blueprint.html', results=postResults)
@@ -115,7 +128,11 @@ def pageBlueprint():
     db.session.commit()
     '''
 
-
+@app.route('/images/<image>')
+def images(image):
+    image = image;
+    imgPath = os.path.join('images', image)
+    return send_file(imgPath)
 
 @app.route('/logout')
 def logout():
@@ -127,31 +144,47 @@ def logout():
     return redirect('/')
 
 
-@app.route('/IndividualPost')
-def IndividualPost():
-    return render_template('IndividualPost.html')
+@app.route('/IndividualPost/<post_id>')
+def IndividualPost(post_id):
+	post_id = post_id
+	postResult = Posts.query.filter_by(id=post_id).first()
+	
+	
+	
+	if postResult is not None:
+		return render_template('IndividualPost.html', post = postResult)
+	
+	else:
+		return redirect('/')
+	
 
+@app.route('/IndividualPost/')
+def IndividualPostBad():
+	return redirect('/')
 
-@app.route('/CreatePost')
-def CreatePost():
-    return render_template('CreatePost.html')
 
 
 @app.route('/termsOfService')
 def termsOfService():
     return render_template('termsOfService.html')
 
+
 @app.route('/Dashboard')
 def Dashboard():
-    return render_template('Dashboard.html')
+    posts = Posts.query.filter_by(author="bill")#session.get('user_name'))
+    messages = Messages.query.filter_by(sentTo="bill")#session.get('user_name'))
+    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages)
+
 
 @app.route('/PostSearch')
 def PostSearch():
     return render_template('PostSearch.html')
 
+
 @app.route('/DashboardMessage')
 def DashboardMessage():
     return render_template('DashboardMessage.html')
+
 
 @app.route('/AdminDashboard')
 def AdminDashboard():

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130680530-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-130680530-1');
+	</script>
+
     {% if title %}
         <title>Shop - {{ title }}</title>
     {% else %}
@@ -79,7 +89,7 @@
 					<!-- Search -->
 					<div class="header-search">
 						<form method="POST" action="{{ url_for('searchResults.results') }}">
-							<input class="input search-input" type="search" name = "search" maxlength = "150" placeholder="Search" >
+							<input class="input search-input" type="search" name = "search" maxlength = "150" placeholder="Search" pattern="[a-zA-Z0-9\s]+">
 							
 							<select class="input search-categories" type = "categories" name = "categories" id="inlineFormCustomSelect">
 								<option value="all">All Categories</option>

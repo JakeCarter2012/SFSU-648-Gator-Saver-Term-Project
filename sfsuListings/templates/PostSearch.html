@@ -50,7 +50,9 @@
 							<div class="col-md-4 col-sm-6">
 								<div class="product product-single">
 									<div class="product-thumb">
-										<a href="#"><img src="{{ url_for('static', filename='')}}{{list[item.id]}}"  width = 200 height = 200></a>
+										{%if item.image is defined %}
+										  <img src="images/{{item.image}}"  width = 200 height = 200/>
+										  {% endif %}
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">${{item.price}}</h3>
