@@ -3,15 +3,12 @@
 
 
     <script>
-
     /* function to change tab */
 function changetab(evt, Name) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
-
-
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
@@ -20,7 +17,6 @@ function changetab(evt, Name) {
     document.getElementById(Name).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
 /* opens messages*/
 function OpenMessage() {
     var x = document.getElementById("Message1");
@@ -122,30 +118,30 @@ function OpenMessage() {
             <br>
 			<!-- images -->
 			<label for="Images">Images:</label><br><br><br>
-			
-			
+
+
 			<!-- category -->
 			<label for="Category">Category:</label><br>
-			
-			
+
+
 			<!-- price -->
-			<label for="Price">Price:</label><br> 
-			
-			
+			<label for="Price">Price:</label><br>
+
+
 			<!-- description -->
 			<label for="Description">Description:</label><br><br><br>
-			
 
-			
-			
+
+
+
 			<!-- Cancel button -->
             <div><button>Cancel Listing</button></div>
 
 		</form>
 		</div>
-	
-	
-	
+
+
+
 	<!-- Right Spacer -->
     <div class="col-sm-2"></div>
   </div>

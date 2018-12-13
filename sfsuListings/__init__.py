@@ -12,10 +12,10 @@ from werkzeug.utils import secure_filename
 from flask_migrate import Migrate
 import os
 
-from aboutPage import aboutPage
-from loginSignUpPage import loginSignUpPage
-from results import searchResults
-from createPost import createPost
+from sfsuListings.aboutPage import aboutPage
+from sfsuListings.loginSignUpPage import loginSignUpPage
+from sfsuListings.results import searchResults
+from sfsuListings.createPost import createPost
 
 database_file = "sqlite:///postdatabase.db"
 
@@ -149,15 +149,12 @@ def logout():
 def IndividualPost(post_id):
 	post_id = post_id
 	postResult = Posts.query.filter_by(id=post_id).first()
-	
-	
-	
+
 	if postResult is not None:
 		return render_template('IndividualPost.html', post = postResult)
 	
 	else:
 		return redirect('/')
-	
 
 @app.route('/IndividualPost/')
 def IndividualPostBad():
