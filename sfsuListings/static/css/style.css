@@ -107,8 +107,8 @@ hr {
   padding: 0px 15px;
   border: none;
   background-color: transparent;
-  -webkit-box-shadow: 0px 0px 0px 1px #DADADA inset, 0px 0px 0px 5px transparent;
-  box-shadow: 0px 0px 0px 1px #DADADA inset, 0px 0px 0px 5px transparent;
+  -webkit-box-shadow: 0px 0px 0px 1px #000000 inset, 0px 0px 0px 5px transparent;
+  box-shadow: 0px 0px 0px 1px #000000 inset, 0px 0px 0px 5px transparent;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -169,7 +169,7 @@ textarea.input {
   left: 0;
   bottom: -1.5px;
   height: 3px;
-  width: 60px;
+  width: 100%;
   background-color: #F8694A;
 }
 
@@ -235,12 +235,11 @@ textarea.input {
 \*----------------------------*/
 
 .header-logo {
+  padding-left: 15px;
   display: inline-block;
-  margin-right: 15px;
 }
 
 .header-logo .logo>img {
-  width: 100%;
   max-height: 70px;
 }
 
@@ -251,7 +250,7 @@ textarea.input {
 .header-search {
   display: inline-block;
   padding: 15px 0px;
-  width: 550px;
+  width: 100%;
 }
 
 .header-search>form {
@@ -700,7 +699,7 @@ textarea.input {
 
 .login {
   color: purple;
-  font-size: 30px;
+  font-size: 20px;
   margin-top: 15px;
 }
 
