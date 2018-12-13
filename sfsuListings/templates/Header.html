@@ -76,16 +76,16 @@
 
 		<!-- header -->
 		<div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- Logo -->
-					<div class="header-logo">
-						<a class="logo" href="/">
-							<img src=" {{url_for('static', filename='img/logo.png')}}">
-						</a>
-					</div>
-					<!-- /Logo -->
+			<div class="container row">
+                <!-- Logo -->
+                <div class="header-logo col-md-3 col-sm-12">
+                    <a class="logo" href="/">
+                        <img src=" {{url_for('static', filename='img/logo.png')}}">
+                    </a>
+                </div>
+                <!-- /Logo -->
 
+				<div class="col-md-6 col-sm-12">
 					<!-- Search -->
 					<div class="header-search">
 						<form method="POST" action="{{ url_for('searchResults.results') }}">
@@ -103,8 +103,9 @@
 					</div>
 					<!-- /Search -->
 				</div>
-				<div class="pull-right">
-					<ul class="header-btns">
+
+				<div class="col-md-3 col-sm-12">
+					<ul class="header-btns pull-right">
 						<!-- Account -->
                         <div class="login">
                             <a href="/login" class="text-uppercase">Login</a>
@@ -120,10 +121,18 @@
 		<!-- container -->
 	</header>
 	<!-- /HEADER -->
-    <div class="about-banner" >
-        <a href="/about"> About US </a>
-        |
-        <a href="/CreatePost"> Post an Item </a>
+    <div class="about-banner row" >
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-md-6 col-sm-12">
+            <a href="/about"> About US </a>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div style="padding-right:  20px">
+                <button type="button" class="btn btn-default"> <a href="/CreatePost"> Post an Item</a> </button>
+                &nbsp;
+                <button type="button" class="btn btn-default"> <a href="/Dashboard"> Dashboard </a></button>
+            </div>
+        </div>
     </div>
     <div class="welcome-banner"> Welcome to our Shop, where SFSU students can buy and sell to each other! </div>
 
