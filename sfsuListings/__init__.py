@@ -8,14 +8,15 @@ from sqlalchemy import DateTime
 from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for, send_file
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.utils import  secure_filename
+from werkzeug.utils import secure_filename
 from flask_migrate import Migrate
 import os
 
-from sfsuListings.aboutPage import aboutPage
-from sfsuListings.loginSignUpPage import loginSignUpPage
-from sfsuListings.results import searchResults
-from sfsuListings.createPost import createPost
+from aboutPage import aboutPage
+from loginSignUpPage import loginSignUpPage
+from results import searchResults
+from createPost import createPost
+
 database_file = "sqlite:///postdatabase.db"
 
 UPLOAD_FOLDER = '/images'
@@ -58,6 +59,7 @@ class Posts(db.Model):
         return "<image: {}".format(self.image)
         return "<category: {}".format(self.category)
 
+
 class Admin(db.Model):
     AdminName = db.Column(db.String(30), unique=True, nullable=False, primary_key=True)
     password_hash = db.Column(db.String(96), unique=False, nullable=False, primary_key=False)
@@ -68,6 +70,7 @@ class Admin(db.Model):
     def __repr__(self):
         return "<Username: {}>".format(self.UserName)
         return "<Hashed Password: {}".format(self.password_hash)
+
 
 class Messages(db.Model):
     id = db.Column(db.INTEGER, unique=True, nullable=False, primary_key=True)
@@ -89,7 +92,7 @@ class Messages(db.Model):
 @app.route('/', methods=["GET", "POST"])
 def index():
     path = "/var/www/sfsuListings/sfsuListings/"
-    con = sqlite3.connect("postdatabase.db") # connects to the database
+    con = sqlite3.connect("postdatabase.db")  # connects to the database
     con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
     cur = con.cursor()
     cur.execute("select * from Posts order by date desc")
@@ -107,11 +110,12 @@ def index():
             userImage.write(row[
                                 'image'])  # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
     """
-    return render_template('HomePage.html', searchResult = result)###, list = l)
-    
+    return render_template('HomePage.html', searchResult=result)  ###, list = l)
+
+
 @app.route('/blueprint')
 def pageBlueprint():
-    #To query: tablename.query.filterby(column name= thing to be filtered by)
+    # To query: tablename.query.filterby(column name= thing to be filtered by)
     postResults = Posts.query.filter_by(category="electronics")
 
     return render_template('blueprint.html', results=postResults)
@@ -141,25 +145,47 @@ def logout():
     return redirect('/')
 
 
-@app.route('/IndividualPost')
-def IndividualPost():
-    return render_template('IndividualPost.html')
+@app.route('/IndividualPost/<post_id>')
+def IndividualPost(post_id):
+	post_id = post_id
+	postResult = Posts.query.filter_by(id=post_id).first()
+	
+	
+	
+	if postResult is not None:
+		return render_template('IndividualPost.html', post = postResult)
+	
+	else:
+		return redirect('/')
+	
+
+@app.route('/IndividualPost/')
+def IndividualPostBad():
+	return redirect('/')
+
+
 
 @app.route('/termsOfService')
 def termsOfService():
     return render_template('termsOfService.html')
 
+
 @app.route('/Dashboard')
 def Dashboard():
-    return render_template('Dashboard.html')
+    posts = Posts.query.filter_by(author="bill")#session.get('user_name'))
+    messages = Messages.query.filter_by(sentTo="bill")#session.get('user_name'))
+    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages)
+
 
 @app.route('/PostSearch')
 def PostSearch():
     return render_template('PostSearch.html')
 
+
 @app.route('/DashboardMessage')
 def DashboardMessage():
     return render_template('DashboardMessage.html')
+
 
 @app.route('/AdminDashboard')
 def AdminDashboard():
