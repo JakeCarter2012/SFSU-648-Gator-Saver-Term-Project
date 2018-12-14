@@ -16,6 +16,7 @@ from sfsuListings.aboutPage import aboutPage
 from sfsuListings.loginSignUpPage import loginSignUpPage
 from sfsuListings.results import searchResults
 from sfsuListings.createPost import createPost
+from sfsuListings.dashboard import dashboard
 
 database_file = "sqlite:///postdatabase.db"
 
@@ -28,13 +29,14 @@ app.register_blueprint(aboutPage)
 app.register_blueprint(loginSignUpPage)
 app.register_blueprint(searchResults)
 app.register_blueprint(createPost)
+app.register_blueprint(dashboard)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
 # NOTE: Secret key resets to new key each time server is restarted;
-# this will invalidate any old session cookies the user has, and requires log out
+# this will invalidate any old session the user has, and requires log out
 # can hardcode the secret key to 'solve' this, but is considered unsafe practice
 app.config['SECRET_KEY'] = os.urandom(24)
 
@@ -147,31 +149,19 @@ def logout():
 
 @app.route('/IndividualPost/<post_id>')
 def IndividualPost(post_id):
-	post_id = post_id
-	postResult = Posts.query.filter_by(id=post_id).first()
+    post_id = post_id
+    postResult = Posts.query.filter_by(id=post_id).first()
 
-	if postResult is not None:
-		return render_template('IndividualPost.html', post = postResult)
-	
-	else:
-		return redirect('/')
+    return render_template('IndividualPost.html', post=postResult)
 
 @app.route('/IndividualPost/')
 def IndividualPostBad():
 	return redirect('/')
 
 
-
 @app.route('/termsOfService')
 def termsOfService():
     return render_template('termsOfService.html')
-
-
-@app.route('/Dashboard')
-def Dashboard():
-    posts = Posts.query.filter_by(author="bill")#session.get('user_name'))
-    messages = Messages.query.filter_by(sentTo="bill")#session.get('user_name'))
-    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages)
 
 
 @app.route('/PostSearch')

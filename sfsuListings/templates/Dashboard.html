@@ -33,16 +33,18 @@ function OpenMessage() {
 </head>
 
 <div class="container-fluid">
-  <h1 align="center">[Listing Name]</h1>
+    {% if post.name is defined %}
+  <h1 align="center">{{post.name}}</h1>
+    {% endif %}
 
 
     <!-- Side bar -->
 <div class="column side">
 
     <!-- Message and Post buttons -->
-  <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
-  <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
 
+    <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
+    <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
 
     <!-- Sort Dropdown -->
     <select>
@@ -64,9 +66,9 @@ function OpenMessage() {
                           {%if item.sentFrom is defined %}
                               {%if item.message is defined %}
                                 <!-- gets username who sent message from database  -->
-                              <tr> <td><a href = "/Dashboard/message/{{ item.id }}"> {{ item.sentFrom }}</a></td>
+                              <tr> <td><a href = "/Dashboard/Messages/{{ item.id }}"> {{ item.sentFrom }}</a></td>
                                 <!-- gets message from database  -->
-                               <td>{{item.message}}</td>
+                               <td>{{item.title}}</td>
                               </tr>
                                   {% endif %}
                           {% endif %}
@@ -89,7 +91,7 @@ function OpenMessage() {
                               {%if item.category is defined %}
                                   {%if item.approval is defined %}
                                       <!-- gets post from database  -->
-                                  <tr> <td>  <a href = "/Dashboard/{{ item.id }}"> {{ item.name }}</a> </td>
+                                  <tr> <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>
                                       <!-- gets approval status from database  -->
                               <td>{{item.approval}}</td></tr>
                                   {% endif %}
@@ -107,39 +109,35 @@ function OpenMessage() {
     <div class="col-sm-2"></div>
 
 
-
+        {% if post.name is defined %}
 		<div class="container2">
 
+            <label>Approval:</label>   {{post.approval}}<br>
 
-		<form action="/action_page.php" method="post">
+			<!-- Display post's images -->
+			<label>Images:</label><br><br><br>
 
-            <h1>Not Approved</h1>
-		<br>
-            <br>
-			<!-- images -->
-			<label for="Images">Images:</label><br><br><br>
+			<!-- Display post's date -->
+			<label>Date:</label>   {{post.date}}<br>
 
-
-			<!-- category -->
-			<label for="Category">Category:</label><br>
+			<!-- Display post's category -->
+			<label>Category:</label>   {{post.category}}<br>
 
 
-			<!-- price -->
-			<label for="Price">Price:</label><br>
+			<!-- Display post's price -->
+			<label>Price: </label>   $ {{post.price}}<br>
 
 
-			<!-- description -->
-			<label for="Description">Description:</label><br><br><br>
-
-
-
-
-			<!-- Cancel button -->
-            <div><button>Cancel Listing</button></div>
-
-		</form>
+			<!-- Display post's description -->
+			<label>Description: </label>   {{post.description}}<br><br><br>
 		</div>
-
+            {% else %}
+            <h4>{{eString.string}}
+                {% if eString.post is defined %}
+                    <a href="/CreatePost" style="color:blue">Click here!</a>
+                {% endif %}
+                </h4>
+        {% endif %}
 
 
 	<!-- Right Spacer -->

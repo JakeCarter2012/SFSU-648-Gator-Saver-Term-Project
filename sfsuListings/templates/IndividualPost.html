@@ -9,8 +9,9 @@
     <div class="col-sm-2"></div>
 
 
-
+		{% if post.date is defined %}
 		<div class="container2">
+
 		<form action="/action_page.php" method="post">
 
 			<!-- Display post's images -->
@@ -41,7 +42,11 @@
 			<button type="submit" size="48">Send</button>
 			</div>
 		</form>
+
 		</div>
+		  {% else %}
+		  <h1> Oops! This post doesn't exist.</h1>
+		  {% endif %}
 
 
 
