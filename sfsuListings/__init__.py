@@ -133,7 +133,7 @@ def pageBlueprint():
 
 @app.route('/images/<image>')
 def images(image):
-    image = image;
+    image = image
     imgPath = os.path.join('images', image)
     return send_file(imgPath)
 

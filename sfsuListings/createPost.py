@@ -55,8 +55,8 @@ def createNewPost():
     price = request.form['price']
     description = request.form['description']
     last = Posts.query.all()
-    lastId = last[-1].id + 1;
-    img = '';
+    lastId = last[-1].id + 1
+    img = ''
     if('img' not in request.files):
         img = 'NoImageAvailable.png'
     else:
@@ -66,7 +66,7 @@ def createNewPost():
         elif(image and allowed_file(image.filename)):
             imageName = secure_filename("Post_" + str(lastId) + Path(image.filename).suffix)
             image.save(os.path.join((UPLOAD_FOLDER), imageName))
-            img = imageName;
+            img = imageName
         else:
             img = 'NoImageAvailable.png'
     newPost = Posts(name=title, author=session.get('user_name'), price=price, category=category,
