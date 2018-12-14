@@ -16,7 +16,7 @@ def results():
     cur = con.cursor()
     nameSearch = request.form["search"]  # gets data from search bar
     category = request.form["categories"] 
-    if category != "all":
+    if category != "All":
         cur.execute("select * from Posts where name like ? and category like ?",
                     (nameSearch + '%', category,))  # searches from posts table and matches search result to category
     else:    
