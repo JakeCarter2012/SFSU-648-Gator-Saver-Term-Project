@@ -4,7 +4,7 @@ import logging
 import base64
 import datetime
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import DateTime
+from sqlalchemy import or_, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import  secure_filename
 from pathlib import Path
@@ -88,7 +88,7 @@ def postDashboard():
     posts = Posts.query.filter_by(author=session.get('user_name'))
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
     errorString = {"string": 'You don\'t have any items posted yet. Want to post an item?',
-                   "post": True};
+                   "post": True}
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult, eString=errorString)
 
 
@@ -107,21 +107,50 @@ def postDashboardId(post_id):
 
     posts = Posts.query.filter_by(author=session.get('user_name'))
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
-    errorString = {"string": 'You don\'t have any items posted yet. Want to post an item?',
-                   "post": True};
-    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult, eString=errorString)
+    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult)
 
 
 @dashboard.route('/Dashboard/Messages')
-def postDashboard():
+def messageDashboard():
     if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
         flash('Please log in before accessing your dashboard.')
         return redirect('/login')
 
-    postResult = Posts.query.filter_by(author=session.get('user_name')).first()
+    message = Messages.query.filter_by(sentTo=session.get('user_name')).first()
+
+    id= message.postId
+    title = message.postTitle
+    sentFrom = message.sentFrom
+
+    messageResults = Messages.query.filter_by(postId=id).filter(or_(Messages.sentFrom == sentFrom, Messages.sentTo == sentFrom))
 
     posts = Posts.query.filter_by(author=session.get('user_name'))
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
-    errorString = {"string": 'You don\'t have any items posted yet. Want to post an item?',
-                   "post": True};
-    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult, eString=errorString)
+    errorString = {"string": 'You don\'t have any messages.'}
+    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
+                           messages=messageResults, eString=errorString, title=title)
+
+
+@dashboard.route('/Dashboard/Messages/<message_id>')
+def messageDashboardId(message_id):
+    message_id = message_id
+    if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
+        flash('Please log in before accessing your dashboard.')
+        return redirect('/login')
+
+    message = Messages.query.filter_by(id=message_id).first()
+
+    if ((message is None) or (message.sentTo != session.get('user_name'))):
+        return redirect('/Dashboard/Messages')
+
+    title = message.postTitle
+    id = message.postId
+    sentFrom = message.sentFrom
+
+    messageResults = Messages.query.filter_by(postId=id).filter(or_(Messages.sentFrom == sentFrom, Messages.sentTo == sentFrom))
+
+    posts = Posts.query.filter_by(author=session.get('user_name'))
+    messages = Messages.query.filter_by(sentTo=session.get('user_name'))
+    errorString = {"string": 'You don\'t have any messages.'}
+    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
+                           messages=messageResults, eString=errorString, title=title)
