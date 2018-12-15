@@ -3,15 +3,12 @@
 
 
     <script>
-
     /* function to change tab */
 function changetab(evt, Name) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
-
-
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
@@ -20,7 +17,6 @@ function changetab(evt, Name) {
     document.getElementById(Name).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
 /* opens messages*/
 function OpenMessage() {
     var x = document.getElementById("Message1");
@@ -37,27 +33,27 @@ function OpenMessage() {
 </head>
 
 <div class="container-fluid">
-  <h1 align="center">[Listing Name]</h1>
+    {% if post is defined %}
+  <h1 align="center"style="padding-top:10px;">{{post.name}}</h1>
+    {% endif %}
 
+    {% if title is defined %}
+  <h1 align="center" style="padding-top:10px;">{{title}}</h1>
+    {% endif %}
 
     <!-- Side bar -->
 <div class="column side">
 
     <!-- Message and Post buttons -->
-  <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
-  <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
 
+    <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
+    <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
 
-    <!-- Sort Dropdown -->
-    <select>
-    <option value="">Sort by</option>
-    <option value="ListingName">Listing Name</option>
-    <option value="Date">Date</option>
 </select>
     <br><br>
 
     <!-- Message table -->
-  <div id="Messages" class="tabcontent">
+  <div id="Messages" class="tabcontent" style="height: 60vh; overflow: auto;">
 
   <table>
 <td>Message From:</td>
@@ -68,9 +64,9 @@ function OpenMessage() {
                           {%if item.sentFrom is defined %}
                               {%if item.message is defined %}
                                 <!-- gets username who sent message from database  -->
-                              <tr> <td><a href = "/Dashboard/message/{{ item.id }}"> {{ item.sentFrom }}</a></td>
+                              <tr> <td><a href = "/Dashboard/Messages/{{ item.id }}"> {{ item.sentFrom }}</a></td>
                                 <!-- gets message from database  -->
-                               <td>{{item.message}}</td>
+                                  <td><a href = "/Dashboard/Posts/{{ item.postId }}">{{item.postTitle}}</a></td>
                               </tr>
                                   {% endif %}
                           {% endif %}
@@ -82,7 +78,7 @@ function OpenMessage() {
   </div>
 
     <!-- Post Table -->
-  <div id="Posts" class="tabcontent">
+  <div id="Posts" class="tabcontent" style="height: 60vh; overflow: auto;">
 <table>
 <td>Post:</td>
 <td>Approval Status:</td>
@@ -93,16 +89,21 @@ function OpenMessage() {
                               {%if item.category is defined %}
                                   {%if item.approval is defined %}
                                       <!-- gets post from database  -->
-                                  <tr> <td>  <a href = "/Dashboard/{{ item.id }}"> {{ item.name }}</a> </td>
+                                  <tr> <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>
                                       <!-- gets approval status from database  -->
                               <td>{{item.approval}}</td></tr>
                                   {% endif %}
                           {% endif %}
-{% endif %}
+                        {% endif %}
 
                         {% endfor %}
 </table>
   </div>
+    {% if messages is defined %}
+    <script> changetab(event, 'Messages')</script>
+    {% else %}
+    <script> changetab(event, 'Posts')</script>
+    {% endif %}
 
 </div>
   <div class="row">
@@ -111,41 +112,46 @@ function OpenMessage() {
     <div class="col-sm-2"></div>
 
 
-
+        {% if post is defined %}
 		<div class="container2">
 
+            <label>Approval:</label>   {{post.approval}}<br>
 
-		<form action="/action_page.php" method="post">
+			<!-- Display post's images -->
+			<img src="/images/{{post.image}}"  width = 300 height = 300/><br><br><br>
 
-            <h1>Not Approved</h1>
-		<br>
-            <br>
-			<!-- images -->
-			<label for="Images">Images:</label><br><br><br>
-			
-			
-			<!-- category -->
-			<label for="Category">Category:</label><br>
-			
-			
-			<!-- price -->
-			<label for="Price">Price:</label><br> 
-			
-			
-			<!-- description -->
-			<label for="Description">Description:</label><br><br><br>
-			
+			<!-- Display post's category -->
+			<label>Category:</label>   {{post.category}}<br>
 
-			
-			
-			<!-- Cancel button -->
-            <div><button>Cancel Listing</button></div>
 
-		</form>
+			<!-- Display post's price -->
+			<label>Price: </label>   $ {{post.price}}<br>
+
+
+			<!-- Display post's description -->
+			<label>Description: </label>   {{post.description}}<br><br><br>
 		</div>
-	
-	
-	
+            {% elif messages is defined %}
+      <div class="container2">
+                {% for item in messages %}
+                    <p><b>{{item.sentFrom}}:</b> {{item.message}}</p>
+                {% endfor %}
+          <form action="/sendMessage" method="post">
+              <textarea id="subject" name="subject" placeholder="Reply..." style="height:200px; resize: none" required></textarea><br>
+
+                <!-- submit button, will add mandatory field if this field is empty. -->
+                    <button type="submit" size="48">Send</button>
+		</form>
+      </div>
+            {% else %}
+            <h4>{{eString.string}}
+                {% if eString.post is defined %}
+                    <a href="/CreatePost" style="color:blue">Click here!</a>
+                {% endif %}
+                </h4>
+        {% endif %}
+
+
 	<!-- Right Spacer -->
     <div class="col-sm-2"></div>
   </div>

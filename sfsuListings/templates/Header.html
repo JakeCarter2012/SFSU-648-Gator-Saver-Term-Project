@@ -48,17 +48,7 @@
     <!-- CreatePost stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='CreatePost.css') }}" />
 
-    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
-  <script>
-  tinymce.init({
-    selector: '#mytextarea', toolbar: [
-    'undo redo | styleselect | bold italic | link image | alignleft aligncenter alignright',
-          'newdocument, undo, redo, cut, copy, paste, bold, italic, underline, strikethrough, subscript, superscript, removeformat, formats'
-  ],
-      menubar: false,
-  });
-  </script>
-
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}" />
 
 </head>
 <body>
@@ -109,9 +99,15 @@
 					<ul class="header-btns pull-right">
 						<!-- Account -->
                         <div class="login">
+							{% if not session.logged_in %}
                             <a href="/login" class="text-uppercase">Login</a>
-                            
+                            /
                             <a href="/SignUp" class="text-uppercase">Join</a>
+							{% else %}
+
+							<a href="/Dashboard" class="text-uppercase">My Dashboard</a>
+
+							{% endif %}
                         </div>
 						<!-- /Account -->
 					</ul>
@@ -126,16 +122,11 @@
         <div class="col-md-3 col-sm-12"></div>
         <div class="col-md-6 col-sm-12">
             <a href="/about"> About US </a>
-        </div>
-        <div class="col-md-3 col-sm-12">
-            <div style="padding-right:  20px">
-                <button type="button" class="btn btn-default"> <a href="/CreatePost"> Post an Item</a> </button>
-                &nbsp;
-                <button type="button" class="btn btn-default"> <a href="/Dashboard"> Dashboard </a></button>
-            </div>
+			|
+			<a href="/CreatePost"> Post an Item</a>
         </div>
     </div>
-    <div class="welcome-banner"> Welcome to our Shop, where SFSU students can buy and sell to each other! </div>
+    <div class="welcome-banner"> Welcome to Gator Saver, where SFSU students can buy and sell to each other! </div>
 
 
 {% block content %}{% endblock content %}
