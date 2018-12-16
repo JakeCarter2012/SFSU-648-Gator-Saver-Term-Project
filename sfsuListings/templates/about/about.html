@@ -1,0 +1,29 @@
+{% extends "Header.html" %}
+{% block content %}
+
+<!doctype html>
+<html>
+    <head>
+        <title>Welcome</title>
+    </head>
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='index.css') }}">
+    
+    <body>
+        <h1>About Us</h1>
+        <a href="{{ url_for('about_page.jake') }}">Team Lead: Jake Carter</a>
+        <br>
+        <a href="{{ url_for('about_page.alvin') }}">Backend Lead/Github Admin:Alvin Lee</a>
+        <br>
+        <a href="{{ url_for('about_page.gary') }}">Backend: Gary Deng</a>
+        <br>
+        <a href="{{ url_for('about_page.tina') }}">Frontend Lead: Tina Nguyen</a>
+        <br>
+        <a href="{{ url_for('about_page.martin') }}">Frontend: Martin Lee</a>
+        <br>
+        <a href="{{ url_for('about_page.gordon') }}">Frontend: Gordon Su</a>
+        <br>
+        <a href="{{ url_for('about_page.wagner') }}">SFSU Liaison: Wagner Ayllon</a>
+        <br>
+        </body>
+</html>
+{% endblock content %}
