@@ -46,8 +46,8 @@ function OpenMessage() {
 
     <!-- Message and Post buttons -->
 
-    <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
-    <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
+    <button class="tablinks btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px" onclick="changetab(event, 'Posts')">Posts</button>
+    <button class="tablinks btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px" onclick="changetab(event, 'Messages')">Messages</button>
 
 </select>
     <br><br>
@@ -140,7 +140,7 @@ function OpenMessage() {
               <textarea id="subject" name="subject" placeholder="Reply..." style="height:200px; resize: none" required></textarea><br>
 
                 <!-- submit button, will add mandatory field if this field is empty. -->
-                    <button type="submit" size="48">Send</button>
+                    <button type="submit" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Send</button>
 		</form>
       </div>
             {% else %}
