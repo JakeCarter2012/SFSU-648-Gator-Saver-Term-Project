@@ -7,7 +7,7 @@ def about():
     return render_template('about/about.html')
 
 
-@aboutPage.route('/about/jake')
+@aboutPage.route('/aboutPage.jake')
 def jake():
     return render_template('about/jake.html')
 
