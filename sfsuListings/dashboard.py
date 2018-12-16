@@ -154,3 +154,64 @@ def messageDashboardId(message_id):
     errorString = {"string": 'You don\'t have any messages.'}
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
                            messages=messageResults, eString=errorString, title=title)
+
+
+@dashboard.route('/Admin', methods=['GET'])
+def adminLoginPage():
+    return render_template('AdminLogin.html')
+
+
+@dashboard.route('/Admin', methods=['POST'])
+def adminLogin():
+    admin = Admin.query.filter_by(AdminName=request.form['username']).first()
+    if admin is None or not admin.check_password(request.form['password']):
+        flash('Invalid username or password.')
+        return redirect('/Admin')
+    session['admin_logged_in'] = True
+    return redirect('/Admin/Dashboard')
+
+@dashboard.route('/Admin/Dashboard')
+def AdminDashboard():
+    if ((session.get('admin_logged_in') == None) or (session.get('admin_logged_in') == False)):
+        flash('Employees must log in to review posts.')
+        return redirect('/Admin')
+
+    postResult = Posts.query.filter_by(approval='pending').first()
+
+    posts = Posts.query.filter_by(approval='pending')
+    errorString = {"string": 'All pending posts have been reviewed.'}
+    return render_template('AdminDashboard.html', QueryPosts=posts, post=postResult, eString=errorString)
+
+
+@dashboard.route('/Admin/Dashboard/<post_id>')
+def AdminDashboardId(post_id):
+    post_id = post_id
+    if((session.get('admin_logged_in') == None) or (session.get('admin_logged_in') == False)):
+        flash('Employees must log in to review posts.')
+        return redirect('/Admin')
+
+    postResult = Posts.query.filter_by(id=post_id).first()
+
+    if (postResult is None):
+        return redirect('/Admin/Dashboard')
+
+    posts = Posts.query.filter_by(approval='pending')
+    errorString = {"string": 'All pending posts have been reviewed.'}
+    return render_template('AdminDashboard.html', QueryPosts=posts, post=postResult, eString=errorString)
+
+
+@dashboard.route('/Admin/Review/<post_id>', methods=["POST"])
+def AdminDashboardReview(post_id):
+    post_id = post_id
+    if((session.get('admin_logged_in') == None) or (session.get('admin_logged_in') == False)):
+        flash('Employees must log in to review posts.')
+        return redirect('/Admin')
+
+    post = Posts.query.filter_by(id=post_id).first()
+    post.approval = request.form['status']
+    db.session.commit()
+
+    if(post is None):
+        return redirect('/Admin/Dashboard')
+
+    return redirect('/Admin/Dashboard')

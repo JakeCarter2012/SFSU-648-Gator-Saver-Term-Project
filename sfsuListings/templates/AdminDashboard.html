@@ -1,83 +1,25 @@
 {% extends "Header.html" %}
 {% block content %}
-
-
-    <script>
-
-    /* function to change tab */
-function changetab(evt, Name) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-
-
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(Name).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-/* opens messages*/
-function OpenMessage() {
-    var x = document.getElementById("Message1");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-</script>
-
 <head>
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='AdminDashboard.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}" />
 </head>
 
 <div class="container-fluid">
-  <h1 align="center">[Listing Name]</h1>
+    {% if post is defined %}
+  <h1 align="center"style="padding-top:10px;">{{post.name}}</h1>
+    {% endif %}
 
-    <!-- Side Bar -->
+    <!-- Side bar -->
 <div class="column side">
-
-    <!-- Message and Post Buttons -->
-  <button class="tablinks" onclick="changetab(event, 'Messages')">Messages</button>
-  <button class="tablinks" onclick="changetab(event, 'Posts')">Posts</button>
-
-    <!-- Sort Dropdown -->
-    <select>
-    <option value="">Sort by</option>
-    <option value="ListingName">Listing Name</option>
-    <option value="Date">Date</option>
-</select>
-    <br><br>
-        <!-- Unapproved Post button -->
-    <button>Unapproved Posts: </button>
-
-    <!-- Message table -->
-  <div id="Messages" class="tabcontent">
-
-  <table>
-      <td>Image:&nbsp;&nbsp;&nbsp;</td> <td>Listing Name:&nbsp;&nbsp;</td> <td>Message:&nbsp;&nbsp;</td>
-   <tr><td>Image thumbnail goes here</td> <td>Toaster </td> <td>Hello, I would like to buy... </td></tr>
-      <tr><td>Image thumbnail goes here</td> <td>Sofa </td> <td>Hi, I was wondering if I could... </td></tr>
-  <tr><td>Image thumbnail goes here</td> <td>Biology Textbook </td> <td>I was wanting to buy your... </td></tr>
-  </table>
-  </div>
-
-        <!-- Post Table -->
-  <div id="Posts" class="tabcontent">
-  <table>
-  <td>Image:&#09;&#09;&#09;</td> <td>Listing Name:</td>
-  <tr><td>Image thumbnail goes here</td> <td>Selling Laptop </td> </tr>
-  <tr><td>Image thumbnail goes here</td> <td>Nike Shoes</td> </tr>
-  <tr><td>Image thumbnail goes here</td> <td>Chair </td> </tr>
-      <tr><td>Image thumbnail goes here</td> <td>Sofa </td> </tr>
-      <tr><td>Image thumbnail goes here</td> <td>Video Game T-shirt </td> </tr>
-      <tr><td>Image thumbnail goes here</td> <td>Nintendo Wii</td> </tr>
-  </table>
+  <div style="height: 60vh; overflow: auto;">
+    <table style="width:100%;">
+    <td>Post:</td>
+        {% for item in QueryPosts%}
+            {%if item.name is defined %}
+                <tr style="width:100%; text-align: center"> <td>  <a href = "/Admin/Dashboard/{{ item.id }}"> {{ item.name }}</a> </td></tr>
+            {% endif %}
+        {% endfor %}
+    </table>
   </div>
 
 </div>
@@ -87,41 +29,34 @@ function OpenMessage() {
     <div class="col-sm-2"></div>
 
 
-
+        {% if post is defined %}
 		<div class="container2">
+			<!-- Display post's images -->
+			<img src="/images/{{post.image}}"  width = 300 height = 300/><br><br><br>
+
+			<!-- Display post's category -->
+			<label>Category:</label>   {{post.category}}<br>
 
 
-		<form action="/action_page.php" method="post">
+			<!-- Display post's price -->
+			<label>Price: </label>   $ {{post.price}}<br>
 
 
-			<!-- images -->
-			<label for="Images">Images:</label><br><br><br>
-			
-			
-			<!-- category -->
-			<label for="Category">Category:</label><br>
-			
-			
-			<!-- price -->
-			<label for="Price">Price:</label><br> 
-			
-			
-			<!-- description -->
-			<label for="Description">Description:</label><br><br><br>
-			
-
-			
-			
-			<!-- Approve/Deny button -->
-            <div><button>Approve </button> <button>Deny </button></div>
-
-		</form>
+			<!-- Display post's description -->
+			<label>Description: </label>   {{post.description}}<br><br><br>
+            <form action="/Admin/Review/{{post.id}}" method="post">
+                <button type="submit" name="status" value="approved" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Approve</button>
+                <button type="submit" name="status" value="denied" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Deny</button>
+            </form>
 		</div>
-	
-	
-	
+            {% else %}
+            <h4>{{eString.string}}</h4>
+        {% endif %}
+
+
 	<!-- Right Spacer -->
     <div class="col-sm-2"></div>
   </div>
+
 </div>
 {% endblock content %}
