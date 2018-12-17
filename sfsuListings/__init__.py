@@ -1,12 +1,7 @@
-import logging
-import base64
+from os import urandom
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import DateTime
-from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for, send_file
-
+from flask import Flask
 from flask_migrate import Migrate
-import os
-
 from sfsuListings.aboutPage import aboutPage
 from sfsuListings.loginSignUpPage import loginSignUpPage
 from sfsuListings.results import searchResults
@@ -32,6 +27,6 @@ migrate = Migrate(app, db)
 # NOTE: Secret key resets to new key each time server is restarted;
 # this will invalidate any old session the user has, and requires log out
 # can hardcode the secret key to 'solve' this, but is considered unsafe practice
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = urandom(24)
 
 from sfsuListings import models, routes
