@@ -21,14 +21,15 @@ def search():
   originalResult = Posts.query.filter_by(approval='approved')
   if categoryInput == "All":
     result = originalResult.filter(Posts.name.like('%' + nameSearch + '%'))
-    return render_template('HomePage.html', searchResult=result, search=nameSearch, title='Search Results')
   else:
     result = originalResult.filter_by(category=categoryInput)
     result = result.filter(Posts.name.like('%' + nameSearch +'%'))
-    return render_template('HomePage.html', searchResult=result, search=nameSearch, title='Search Results')
-  
+ 
+  if result.first() is None:
+    flash("Your search had no results, how about checking out the most recent posts?") 
+    result = originalResult
 
-  result = originalResult.order_by(Posts.date.desc())
+  result = result.order_by(Posts.date.desc())
   return render_template('HomePage.html', searchResult=result, search=nameSearch, title='Search Results')
 
 
