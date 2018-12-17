@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130680530-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-130680530-1');
+	</script>
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Gator Shopper</title>
+    {% endif %}
+    	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>SFSU Shop</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+    <!-- IndividualPost stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/IndividualPost.css') }}" />
+
+    <!-- CreatePost stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/CreatePost.css') }}" />
+
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}" />
+
+</head>
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- top Header -->
+		<div id="top-header">
+			<div class="container">
+				<div class="pull-left">
+					<span>SFSU-Fulda Software Engineering Project CSC 648-848, Fall 2018.  For Demonstration Only</span>
+				</div>
+			</div>
+		</div>
+		<!-- /top Header -->
+
+		<!-- header -->
+		<div id="header">
+			<div class="container row">
+                <!-- Logo -->
+                <div class="header-logo col-md-3 col-sm-12">
+                    <a class="logo" href="/">
+                        <img src=" {{url_for('static', filename='img/logo.png')}}">
+                    </a>
+                </div>
+                <!-- /Logo -->
+
+				<div class="col-md-6 col-sm-12">
+					<!-- Search -->
+					<div class="header-search">
+						<form method="POST" action="{{ url_for('searchResults.results') }}">
+							<input class="input search-input" type="search" name = "search" maxlength = "150" placeholder="Search" pattern="[a-zA-Z0-9\s]+">
+							
+							<select class="input search-categories" type = "categories" name = "categories" id="inlineFormCustomSelect">
+								<option value="All">All Categories</option>
+								<option value="Books">Books</option>
+                                <option value="Electronics">Electronics </option>
+								<option value="Furniture">Furniture </option>
+								<option value="Clothing"> Clothing </option>
+								<option value="Misc"> Miscellaneous</option>
+							</select>
+							<button class="search-btn" type="submit" id="submitbtn" value = "search"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+					<!-- /Search -->
+				</div>
+
+				<div class="col-md-3 col-sm-12">
+					<ul class="header-btns pull-right">
+						<!-- Account -->
+                        <div class="login">
+						  {% if not session.logged_in %}
+                            <a href="/login" class="text-uppercase">Login</a>
+                            /
+                            <a href="/SignUp" class="text-uppercase">Join</a>
+							{% else %}
+              <a href="{{ url_for('logout') }}" class="text-uppercase">Log out</a>
+              /
+							<a href="/Dashboard" class="text-uppercase">Dashboard</a>
+
+							{% endif %}
+                        </div>
+						<!-- /Account -->
+					</ul>
+				</div>
+			</div>
+			<!-- header -->
+		</div>
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+    <div class="about-banner row" >
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-md-6 col-sm-12">
+            <a href="{{ url_for('about_page.about') }}"> About Us </a>
+			|
+			<a href="/CreatePost"> Post an Item</a>
+        </div>
+    </div>
+    <div class="welcome-banner"> Welcome to Gator Saver, where SFSU students can buy and sell to each other! </div>
+
+
+{% block content %}{% endblock content %}

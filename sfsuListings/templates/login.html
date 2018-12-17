@@ -1,0 +1,43 @@
+{% extends "Header.html" %}
+{% block content %}
+
+<section class="login_area p_100">
+            <div class="container">
+                <div class="login_inner">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="login_title">
+                                <h2 style="padding-top:10px;">Log in</h2>
+                                {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+                                    <ul class=flashes>
+                                    {% for message in messages %}
+                                      <li style="color:red">{{ message }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                  {% endif %}
+                                {% endwith %}
+                            </div>
+                            <form action="" method="post" class="login_form row">
+                                <div class="col-lg-12 form-group">
+                                    <input class="form-control" type="Username" placeholder="User Name", name="username">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <input class="form-control" type="Password" placeholder="Password" name="password">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <p>Forgot your password ? <a href="#" style="color:blue">Click here!</a></p>
+                                </div>
+                                <div>
+                                    <a href="/SignUp" style="color:blue">New user? Register here!</a>
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <button type="submit" value="submit" style ="background-color:#c0c0c0"class="btn update_btn form-control">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

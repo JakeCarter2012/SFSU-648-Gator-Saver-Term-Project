@@ -1,0 +1,52 @@
+{% extends "Header.html" %}
+{% block content %}
+
+      
+<div class="container-fluid">
+  <h1 align="center"style="padding-top:10px;">{{post.name}}</h1>
+  <div class="row">
+    <!-- Left Spacer -->
+    <div class="col-sm-2"></div>
+		{% if post.date is defined %}
+		<div class="container2">
+
+		<form action="" method="post">
+
+			<!-- Display post's images -->
+			<img src="/static/img/{{post.image}}"  width = 300 height = 300/><br><br><br>
+			
+			
+			<!-- Display post's category -->
+			<label for="Category">Category:</label>   {{post.category}}<br>
+
+
+			<!-- Display post's price -->
+			<label for="Price">Price: </label>   $ {{post.price}}<br>
+
+
+			<!-- Display post's description -->
+			<label for="Description">Description: </label>   {{post.description}}<br><br><br>
+
+			<label for="Message">Message:</label>
+			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px; resize: none" required></textarea><br>
+
+
+
+			<!-- submit button, will add mandatory field if this field is empty. -->
+			<div class="button" align="left">
+			<button type="submit"class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Send</button>
+			</div>
+		</form>
+
+		</div>
+		  {% else %}
+		  <h1> Oops! This post doesn't exist.</h1>
+		  {% endif %}
+
+
+
+	<!-- Right Spacer -->
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+{% endblock content %}

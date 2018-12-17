@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130680530-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-130680530-1');
+  </script>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Admin Dashboard</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+
+  <!-- Slick -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}" />
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}" />
+
+  <!-- nouislider -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}" />
+
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}" />
+
+</head>
+<body>
+<div style="padding-top: 20px; padding-left: 20px;"> <h1><a href= "{{ url_for('dashboard.adminLogout') }}"> Logout </a>
+</h1></div>
+<div class="container-fluid">
+    {% if post is defined %}
+  <h1 align="center"style="padding-top:10px;">{{post.name}}</h1>
+    {% endif %}
+
+    <!-- Side bar -->
+<div class="column side">
+  <div style="height: 60vh; overflow: auto;">
+    <table style="width:100%;">
+    <td>Post:</td>
+        {% for item in QueryPosts%}
+            {%if item.name is defined %}
+                <tr style="width:100%; text-align: center"> <td>  <a href = "/Admin/Dashboard/{{ item.id }}"> {{ item.name }}</a> </td></tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+  </div>
+
+</div>
+  <div class="row">
+    <!-- Left Spacer -->
+
+    <div class="col-sm-2"></div>
+
+
+        {% if post is defined %}
+		<div class="container2">
+			<!-- Display post's images -->
+			<img src="/static/img/{{post.image}}"  width = 300 height = 300/><br><br><br>
+
+			<!-- Display post's category -->
+			<label>Category:</label>   {{post.category}}<br>
+
+
+			<!-- Display post's price -->
+			<label>Price: </label>   $ {{post.price}}<br>
+
+
+			<!-- Display post's description -->
+			<label>Description: </label>   {{post.description}}<br><br><br>
+            <form action="/Admin/Review/{{post.id}}" method="post">
+                <button type="submit" name="status" value="approved" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Approve</button>
+                <button type="submit" name="status" value="denied" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Deny</button>
+            </form>
+		</div>
+            {% else %}
+            <h4>{{eString.string}}</h4>
+        {% endif %}
+
+
+	<!-- Right Spacer -->
+    <div class="col-sm-2"></div>
+  </div>
+
+</div>
+</body>
+</html>

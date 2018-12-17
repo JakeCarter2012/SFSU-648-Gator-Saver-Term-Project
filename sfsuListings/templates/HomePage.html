@@ -1,0 +1,46 @@
+{% extends "Header.html" %}
+{% block content %}
+
+<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">RECENTLY POSTED</h2>
+					</div>
+				</div>
+				<!-- section title -->
+				<!-- banner -->
+				
+				{%for item in searchResult%}
+				<div class="col-md-3 col-sm-6">
+					<a class="banner banner-1" href="/IndividualPost/{{item.id}}">
+						{%if item.image is defined %}
+                          <img src="static/img/{{item.image}}"  width = 200 height = 200/>
+                          {% endif %}
+						<h4 class="product-name"><a href="#">{{item.name}}</a></h4>
+					</a>
+				</div>
+				{% else %}
+                          <h1> No search results were found for {{search}}.</h1>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- /section -->
+
+	<!-- jQuery Plugins -->
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/slick.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/nouislider.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.zoom.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
+{% endblock content %}
