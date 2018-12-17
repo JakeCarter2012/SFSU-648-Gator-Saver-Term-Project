@@ -183,6 +183,12 @@ def AdminDashboard():
     return render_template('AdminDashboard.html', QueryPosts=posts, post=postResult, eString=errorString)
 
 
+@dashboard.route('/Admin/logout')
+def adminLogout():
+  session['logged_in'] = False
+  session['user_name'] = None
+  return redirect('/Admin')
+
 @dashboard.route('/Admin/Dashboard/<post_id>')
 def AdminDashboardId(post_id):
     post_id = post_id
