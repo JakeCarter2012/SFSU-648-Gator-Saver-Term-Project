@@ -72,11 +72,6 @@ def dashboardRoute():
     return redirect('/Dashboard/Posts')
 
 
-@dashboard.route('/Dashboard/')
-def dashboardSlash():
-    return redirect('/Dashboard/Posts')
-
-
 @dashboard.route('/Dashboard/Posts')
 def postDashboard():
     if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
@@ -158,6 +153,8 @@ def messageDashboardId(message_id):
 
 @dashboard.route('/Admin', methods=['GET'])
 def adminLoginPage():
+    if session.get('admin_logged_in') == True:
+      return redirect('/Admin/Dashboard')
     return render_template('AdminLogin.html')
 
 
@@ -185,8 +182,7 @@ def AdminDashboard():
 
 @dashboard.route('/Admin/logout')
 def adminLogout():
-  session['logged_in'] = False
-  session['user_name'] = None
+  session['admin_logged_in'] = False
   return redirect('/Admin')
 
 @dashboard.route('/Admin/Dashboard/<post_id>')
