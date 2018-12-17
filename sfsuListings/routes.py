@@ -1,6 +1,6 @@
 from sfsuListings import app, db
 from sfsuListings.models import Posts, Messages, Admin
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 import sqlite3
 
 # index page
@@ -32,8 +32,21 @@ def logout():
 def IndividualPost(post_id):
     post_id = post_id
     postResult = Posts.query.filter_by(id=post_id).first()
-
     return render_template('IndividualPost.html', post=postResult)
+
+@app.route('/IndividualPost/<post_id>', methods = ['POST'])
+def addMessage(post_id):
+  if session.get('logged_in') == None or session.get('logged_in') == False:
+    flash('Please log in before sending a message.')
+    return redirect('/login')
+  messageBody = request.form['subject']
+  currentUser = session.get('user_name')
+  postResult = Posts.query.filter_by(id=post_id).first()
+  newMessage = Messages(sentFrom = currentUser, sentTo = postResult.author, postId = postResult.id, postTitle = postResult.name, message = messageBody)  
+  db.session.add(newMessage)
+  db.session.commit()
+  flash('Your message has been sent.')
+  return render_template('IndividualPost.html', post=postResult)
 
 @app.route('/IndividualPost/')
 def IndividualPostBad():
