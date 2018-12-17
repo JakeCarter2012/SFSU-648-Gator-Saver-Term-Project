@@ -38,6 +38,8 @@ class RegisteredUser(db.Model):
 # sub pages
 @loginSignUpPage.route('/login', methods=['GET'])
 def login():
+    if session.get('logged_in') == True:
+      return redirect('/')
     return render_template('login.html', title='Login')
 
 
