@@ -23,4 +23,4 @@ def results():
         cur.execute("select * from Posts where category like ? ",
                     (nameSearch + '%',)) 
     result = cur.fetchall()            
-    return render_template('PostSearch.html', searchQuery=result, search=nameSearch)
+    return render_template('PostSearch.html', searchQuery=result, search=nameSearch, title='Search Results')

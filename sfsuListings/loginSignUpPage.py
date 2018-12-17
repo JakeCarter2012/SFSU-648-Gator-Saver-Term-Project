@@ -38,7 +38,7 @@ class RegisteredUser(db.Model):
 # sub pages
 @loginSignUpPage.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html')
+    return render_template('login.html', title='Login')
 
 
 @loginSignUpPage.route('/login', methods=['POST'])
@@ -58,7 +58,7 @@ def login_submit():
 
 @loginSignUpPage.route('/SignUp', methods=['GET'])
 def SignUp():
-    return render_template('SignUp.html')
+    return render_template('SignUp.html', title='Register')
 
 
 @loginSignUpPage.route('/SignUp', methods=['POST'])
