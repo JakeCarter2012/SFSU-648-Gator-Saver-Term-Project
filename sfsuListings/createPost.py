@@ -1,5 +1,4 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, g, Blueprint, url_for
-import sqlite3
 import logging
 import base64
 import datetime
@@ -7,11 +6,12 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
 from werkzeug.utils import  secure_filename
 from pathlib import Path
+from sfsuListings.configPaths import image_path
 import os
 
 createPost = Blueprint('createPost', __name__, template_folder='templates')
 
-UPLOAD_FOLDER = 'static/img'
+UPLOAD_FOLDER = image_path
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 
 login = Flask(__name__)
