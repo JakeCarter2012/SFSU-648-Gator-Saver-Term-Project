@@ -67,12 +67,7 @@ class Messages(db.Model):
         return "message: {}".format(self.message)
 
 
-@dashboard.route('/Dashboard')
-def dashboardRoute():
-    return redirect('/Dashboard/Posts')
-
-
-@dashboard.route('/Dashboard/Posts')
+@dashboard.route('/Dashboard/')
 def postDashboard():
     if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
         flash('Please log in before accessing your dashboard.')

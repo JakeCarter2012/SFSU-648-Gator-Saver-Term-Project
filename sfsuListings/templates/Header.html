@@ -78,7 +78,7 @@
 				<div class="col-md-6 col-sm-12">
 					<!-- Search -->
 					<div class="header-search">
-						<form method="POST" action="{{ url_for('searchResults.results') }}">
+						<form method="POST" action="{{ url_for('search') }}">
 							<input class="input search-input" type="search" name = "search" maxlength = "150" placeholder="Search" pattern="[a-zA-Z0-9\s]+">
 							
 							<select class="input search-categories" type = "categories" name = "categories" id="inlineFormCustomSelect">
@@ -106,7 +106,7 @@
 							{% else %}
               <a href="{{ url_for('logout') }}" class="text-uppercase">Log out</a>
               /
-							<a href="/Dashboard" class="text-uppercase">Dashboard</a>
+							<a href="{{ url_for('dashboard.postDashboard') }} " class="text-uppercase">Dashboard</a>
 
 							{% endif %}
                         </div>

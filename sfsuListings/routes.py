@@ -5,7 +5,6 @@ import sqlite3
 import logging
 
 
-
 # index page
 @app.route('/index')
 @app.route('/')
@@ -14,6 +13,26 @@ def index():
     result = result.order_by(Posts.date.desc())
     return render_template('HomePage.html', searchResult=result, title="Home") 
 
+@app.route('/index', methods = ["POST"])
+@app.route('/', methods = ["POST"])
+def search():
+  nameSearch = request.form["search"]  
+  categoryInput = request.form["categories"] 
+  originalResult = Posts.query.filter_by(approval='approved')
+  if categoryInput == "All":
+    result = originalResult.filter(Posts.name.like('%' + nameSearch + '%'))
+    return render_template('HomePage.html', searchResult=result, search=nameSearch, title='Search Results')
+  else:
+    result = originalResult.filter_by(category=categoryInput)
+    result = result.filter(Posts.name.like('%' + nameSearch +'%'))
+    return render_template('HomePage.html', searchResult=result, search=nameSearch, title='Search Results')
+  
+
+  result = originalResult.order_by(Posts.date.desc())
+  return render_template('HomePage.html', searchResult=result, search=nameSearch, title='Search Results')
+
+
+  
 
 @app.route('/images/<image>')
 def images(image):
