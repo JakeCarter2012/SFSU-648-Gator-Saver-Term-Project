@@ -4,7 +4,8 @@ from flask import render_template, flash, redirect, url_for, request, session
 import sqlite3
 
 # index page
-@app.route('/', methods=["GET", "POST"])
+@app.route('/index')
+@app.route('/')
 def index():
     path = "/var/www/sfsuListings/sfsuListings/"
     con = sqlite3.connect("postdatabase.db")  # connects to the database
@@ -12,7 +13,7 @@ def index():
     cur = con.cursor()
     cur.execute("select * from Posts order by date desc")
     result = cur.fetchmany(8)
-    return render_template('HomePage.html', searchResult=result)  ###, list = l)
+    return render_template('HomePage.html', searchResult=result, title="Home") 
 
 
 @app.route('/images/<image>')
@@ -32,7 +33,8 @@ def logout():
 def IndividualPost(post_id):
     post_id = post_id
     postResult = Posts.query.filter_by(id=post_id).first()
-    return render_template('IndividualPost.html', post=postResult)
+    postName = postResult.name
+    return render_template('IndividualPost.html', post=postResult, title=postName)
 
 @app.route('/IndividualPost/<post_id>', methods = ['POST'])
 def addMessage(post_id):
@@ -42,11 +44,12 @@ def addMessage(post_id):
   messageBody = request.form['subject']
   currentUser = session.get('user_name')
   postResult = Posts.query.filter_by(id=post_id).first()
+  postName = postResult.name
   newMessage = Messages(sentFrom = currentUser, sentTo = postResult.author, postId = postResult.id, postTitle = postResult.name, message = messageBody)  
   db.session.add(newMessage)
   db.session.commit()
   flash('Your message has been sent.')
-  return render_template('IndividualPost.html', post=postResult)
+  return render_template('IndividualPost.html', title=postName, post=postResult)
 
 @app.route('/IndividualPost/')
 def IndividualPostBad():
@@ -55,17 +58,18 @@ def IndividualPostBad():
 
 @app.route('/termsOfService')
 def termsOfService():
-    return render_template('termsOfService.html')
+    tosTitle = 'Terms of Service'
+    return render_template('termsOfService.html', title=tosTitle)
 
 
 @app.route('/PostSearch')
 def PostSearch():
-    return render_template('PostSearch.html')
+    return render_template('PostSearch.html', title='Search')
 
 
 @app.route('/AdminDashboard')
 def AdminDashboard():
-    return render_template('AdminDashboard.html')
+    return render_template('AdminDashboard.html', title='Admin Dashboard')
 
 
 @app.errorhandler(500)
