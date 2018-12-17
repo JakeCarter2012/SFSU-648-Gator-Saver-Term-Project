@@ -115,22 +115,6 @@ def index():
     return render_template('HomePage.html', searchResult=result)  ###, list = l)
 
 
-@app.route('/blueprint')
-def pageBlueprint():
-    # To query: tablename.query.filterby(column name= thing to be filtered by)
-    postResults = Posts.query.filter_by(category="electronics")
-
-    return render_template('blueprint.html', results=postResults)
-
-    '''
-    To add something to the db, first create the object 
-    last = Posts.query.all()
-    lastId = last[-1].id + 1;
-    post = Posts(name = "example", author = "bob", id=lastId, price = 4, category = "example")
-    db.session.add(post)
-    db.session.commit()
-    '''
-
 @app.route('/images/<image>')
 def images(image):
     image = image
