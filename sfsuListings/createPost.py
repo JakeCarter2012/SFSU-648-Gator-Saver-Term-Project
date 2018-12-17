@@ -11,7 +11,7 @@ import os
 
 createPost = Blueprint('createPost', __name__, template_folder='templates')
 
-UPLOAD_FOLDER = 'images'
+UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 
 login = Flask(__name__)
