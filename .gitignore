@@ -2,5 +2,7 @@
 *.DS_Store
 *.vscode
 *.idea
+*.db
+sfsuListings/static/img/*
 *__pycache__/
 
