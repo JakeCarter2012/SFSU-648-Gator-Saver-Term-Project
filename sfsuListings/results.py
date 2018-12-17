@@ -23,19 +23,4 @@ def results():
         cur.execute("select * from Posts where category like ? ",
                     (nameSearch + '%',)) 
     result = cur.fetchall()            
-    # filename to write blob info into
-    '''
-    l = [None] * 10  # this write the image filenames into a list, which is sent to results.html
-    for row in result:
-        j = row['id']
-        i = row['id']
-        l[j] = "item" + str(row['id']) + ".jpg"
-
-        filename ='static/item' + str(i) + '.jpg'
-        if (row['image'] != None):  # if the image is not null
-            userImage = open(filename, 'wb')
-            userImage.write(row[
-                                'image'])  # this writes the image into a .jpg file, trying to figure out how to write into different extensions.
-    '''
     return render_template('PostSearch.html', searchQuery=result, search=nameSearch)
-    '''                         ,list=l)  # renders results.html, searchQuery is the list of items from database'''
