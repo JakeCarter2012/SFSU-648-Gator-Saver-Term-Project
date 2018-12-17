@@ -99,13 +99,14 @@
 					<ul class="header-btns pull-right">
 						<!-- Account -->
                         <div class="login">
-							{% if not session.logged_in %}
+						  {% if not session.logged_in %}
                             <a href="/login" class="text-uppercase">Login</a>
                             /
                             <a href="/SignUp" class="text-uppercase">Join</a>
 							{% else %}
-
-							<a href="/Dashboard" class="text-uppercase">My Dashboard</a>
+              <a href="{{ url_for('logout') }}" class="text-uppercase">Log out</a>
+              /
+							<a href="/Dashboard" class="text-uppercase">Dashboard</a>
 
 							{% endif %}
                         </div>
