@@ -10,7 +10,8 @@ import logging
 @app.route('/index')
 @app.route('/')
 def index():
-    result = Posts.query.all()
+    result = Posts.query.filter_by(approval='approved')
+    result = result.order_by(Posts.date.desc())
     return render_template('HomePage.html', searchResult=result, title="Home") 
 
 
