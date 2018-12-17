@@ -2,17 +2,15 @@ from sfsuListings import app, db
 from sfsuListings.models import Posts, Messages, Admin
 from flask import render_template, flash, redirect, url_for, request, session
 import sqlite3
+import logging
+
+
 
 # index page
 @app.route('/index')
 @app.route('/')
 def index():
-    path = "/var/www/sfsuListings/sfsuListings/"
-    con = sqlite3.connect("postdatabase.db")  # connects to the database
-    con.row_factory = sqlite3.Row  # this creates rows for the sqlite? not too sure about this
-    cur = con.cursor()
-    cur.execute("select * from Posts order by date desc")
-    result = cur.fetchmany(8)
+    result = Posts.query.all()
     return render_template('HomePage.html', searchResult=result, title="Home") 
 
 
