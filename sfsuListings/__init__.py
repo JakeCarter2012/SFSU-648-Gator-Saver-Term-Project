@@ -153,11 +153,6 @@ def PostSearch():
     return render_template('PostSearch.html')
 
 
-@app.route('/DashboardMessage')
-def DashboardMessage():
-    return render_template('DashboardMessage.html')
-
-
 @app.route('/AdminDashboard')
 def AdminDashboard():
     return render_template('AdminDashboard.html')
