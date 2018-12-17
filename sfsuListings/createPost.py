@@ -43,7 +43,7 @@ def allowed_file(filename):
 
 @createPost.route('/CreatePost', methods=['GET'])
 def createPostGet():
-    return render_template('CreatePost.html')
+    return render_template('CreatePost.html', title='Create Post')
 
 @createPost.route('/CreatePost', methods=['POST'])
 def createNewPost():
