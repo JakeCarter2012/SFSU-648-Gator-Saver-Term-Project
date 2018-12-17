@@ -1,13 +1,51 @@
-{% extends "Header.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130680530-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'UA-130680530-1');
+  </script>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Admin Login</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+
+  <!-- Slick -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}" />
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}" />
+
+  <!-- nouislider -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}" />
+
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
 <section class="login_area p_100">
             <div class="container">
                 <div class="login_inner">
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="login_title">
-                                <h2 style="padding-top:10px;">Team member log in</h2>
+                                <h2 style="padding-top:10px;">Admin Login</h2>
                                 {% with messages = get_flashed_messages() %}
                                   {% if messages %}
                                     <ul class=flashes>
@@ -34,4 +72,8 @@
                 </div>
             </div>
         </section>
-{% endblock content %}
+
+</body>
+</html>
+
+
