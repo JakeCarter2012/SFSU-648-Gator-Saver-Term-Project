@@ -4,5 +4,6 @@
 *.idea
 *.db
 sfsuListings/static/img/*
+sfsuListings/configPaths.py
 *__pycache__/
 
