@@ -1,51 +1,55 @@
 {% extends "Header.html" %}
 {% block content %}
-
       
 <div class="container-fluid">
-  <h1 align="center"style="padding-top:10px;">{{post.name}}</h1>
   <div class="row">
-    <!-- Left Spacer -->
-		{% if post.date is defined %}
-            <div class="col-md-5"></div>
+      <!-- Left Spacer -->
+  		{% if post.date is defined %}
 
-		<form action="" method="post">
-
-			<!-- Display post's images -->
-			<img src="/static/img/{{post.image}}"  width = 300 height = 300/><br>
-
-            <div class="col-md-4"></div>
-            <div class="col-md-5 col-sm-12">
-
-			<!-- Display post's category -->
-			<label for="Category">Category:</label>   {{post.category}}<br>
+      <div class="col-md-4"></div>
 
 
-			<!-- Display post's price -->
-			<label for="Price">Price: </label>   $ {{post.price}}<br>
-      <label for="Date">Date Created: </label> {{ post.date.strftime("%m/%d/%Y %H:%M:%S %Z") }}<br>
+      <div class="col-md-4">
+    		<form action="" method="post">
+          <div class="col-md-12 text-center" style="padding-top: 15px">
+            <h2 style="background-color:gold; padding:5px; border-radius:15px"> {{post.name}} </h2>
+          </div>
 
-			<!-- Display post's description -->
-			<label for="Description">Description: </label>{% if post.description %} {{post.description}} {% else %}
-      The author of this post didn't provide a description. {% endif %}
-      <br><br>
+          <div class="col-md-12" style="margin-top: 0px">
+    			 <img src="/static/img/{{post.image}}" style="width:60%; margin-left: auto; margin-right: auto;display:block"/>
+          </div>
 
-			<label for="Message">Message:</label>
-			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px; resize: none" required></textarea><br>
+          <div class="col-md-12" style="margin-bottom: 0px"> 
+    			   <p><label style="text-align:left"for="Category">Category:</label>{{post.category}}</p>
+          </div>
 
+          <div class="col-md-12" style="margin: 0px">
+            <p><label style="text-align:left" for="Price">Price: </label>{{ '${:,.2f}'.format(post.price) }}</p>
+          </div>
 
+           <div class="col-md-12" style="margin: 0px">
+            <p><label style="text-align:left" for="Date">Post Date: </label>{{ post.date.strftime("%m/%d/%Y %H:%M:%S %Z") }}</p>
+          </div>
+          
+    			 <div class="col-md-12" style="margin-top: 0px">
+            <p> <label style="text-align:left" for="Description">Description: </label>{% if post.description %} {{post.description}} {% else %}
+          The author of this post didn't provide a description. {% endif %}</p>
+          </div>
+    		
 
-			<!-- submit button, will add mandatory field if this field is empty. -->
-			<div class="button" align="left">
-			<button type="submit"class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Send</button>
-			</div>
-		</form>
+          <div class="form-group col-md-12" style="margin: 0px">
+    			 <textarea id="subject" name="subject" class="form-control" placeholder="Interested? Send a message to the seller!" style="height:200px; resize: none" required></textarea><br>
+          </div>
+    			<div class="form-group col-md-12" style="margin-top: 0px; margin-bottom: 30px">
+    			 <button type="submit"class="btn update_btn form-control" style="color:white;background-color:#4C57F6;min-width:100px; margin:0px">Send</button>
+    			</div>
+    		</form>
 
-            </div>
-		  {% else %}
-		  <h1> Oops! This post doesn't exist.</h1>
-		  {% endif %}
-
+      </div>
+    </div>
+    {% else %}
+    <h1> Oops! This post doesn't exist.</h1>
+    {% endif %}
   </div>
-</div>
+  </div>
 {% endblock content %}
