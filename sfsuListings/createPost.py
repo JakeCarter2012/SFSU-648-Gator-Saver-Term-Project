@@ -71,7 +71,6 @@ def createNewPost():
             img = 'NoImageAvailable.png'
     newPost = Posts(name=title, author=session.get('user_name'), price=price, category=category,
                     description=description, image=img, id=lastId, approval='pending')
-    messages = set(messages)
     db.session.add(newPost)
     db.session.commit()
     return redirect('/Dashboard')
