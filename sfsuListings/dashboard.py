@@ -91,8 +91,10 @@ def postDashboardId(post_id):
 
     postResult = Posts.query.filter_by(id=post_id).first()
 
-    if((postResult is None) or (postResult.author != session.get('user_name'))):
+    if(postResult is None):
         return redirect('/Dashboard/Posts')
+    elif (postResult.author != session.get('user_name')):
+        return redirect('/IndividualPost/' + post_id)
 
 
     posts = Posts.query.filter_by(author=session.get('user_name'))
