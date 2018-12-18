@@ -143,17 +143,17 @@ function OpenMessage() {
         <label style="margin:0px; text-align: left">Description:</label>   {{post.description}}
       </div>
 
-            {% elif messages is defined %}
 
-                {% for item in messages %}
-                    <p><b>{{item.sentFrom}}:</b> {{item.message}}</p>
-                {% endfor %}
-          <form action="" method="post">
-              <textarea id="subject" name="subject" placeholder="Reply..." style="height:200px; resize: none" required></textarea><br>
-
-                <!-- submit button, will add mandatory field if this field is empty. -->
-                    <button type="submit" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Send</button>
-		</form>
+      {% elif messages is defined %}
+      <div class="col-md-12">
+        {% for item in messages %}
+            <p><b>{{item.sentFrom}}:</b> {{item.message}}</p>
+        {% endfor %}
+        <form action="" method="post">
+            <textarea id="subject" name="subject" class="form-control" placeholder="Reply..." style="height:30px; padding:5px; resize: none" required></textarea><br>
+            <button type="submit" class="btn update_btn form-control" style="background-color:#4C57F6; margin-left:0px; color:white; width: 25%;min-width:100px">Send</button>
+		    </form>
+      </div>
    
             {% else %}
             <h4>{{eString.string}}
