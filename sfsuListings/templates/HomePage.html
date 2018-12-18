@@ -10,6 +10,15 @@
                 				<!-- section title -->
 				<div class="col-md-12">
 					<div class="section-title">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %} 
+            <ul class=flashes>
+            {% for message in messages %}
+            <li style="color:green">{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
 						<h2 class="title">RECENTLY POSTED</h2>
 					</div>
 				</div>
@@ -20,10 +29,13 @@
 				<div class="col-md-3 col-sm-6">
 					<a class="banner banner-1" href="/IndividualPost/{{item.id}}">
 						{%if item.image is defined %}
-                          <img src="static/img/{{item.image}}"  width = 200 height = 200/>
-                          {% endif %}
-						<h4 class="product-name"><a href="#">{{item.name}}</a></h4>
-					</a>
+               <img src="static/img/{{item.image}}"  width = 200 height = 200/>
+            {% endif %} </a>
+            
+					<div class ="col-md-9" style="padding-left: 0px;"><span class="text-left"><h4><a href="/IndividualPost/{{item.id}}">{{item.name}}</a></h4></span></div>
+          <div class ="col-md-3"><span class="text-right"><h4><a class= "" href="IndividualPost/{{item.id}}">{{ '${:,.2f}'.format(item.price) }}</a></h4></span></div> 
+          
+			
 				</div>
 				{% else %}
                           <h1> No search results were found for {{search}}.</h1>

@@ -4,7 +4,6 @@ from flask import Flask
 from flask_migrate import Migrate
 from sfsuListings.aboutPage import aboutPage
 from sfsuListings.loginSignUpPage import loginSignUpPage
-from sfsuListings.results import searchResults
 from sfsuListings.createPost import createPost
 from sfsuListings.dashboard import dashboard
 
@@ -17,7 +16,6 @@ app = Flask(__name__)
 
 app.register_blueprint(aboutPage)
 app.register_blueprint(loginSignUpPage)
-app.register_blueprint(searchResults)
 app.register_blueprint(createPost)
 app.register_blueprint(dashboard)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file

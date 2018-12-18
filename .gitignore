@@ -1,6 +1,9 @@
 *.wsgi
-**.DS_Store
-**.vscode
-**.idea
-**__pycache__/
+*.DS_Store
+*.vscode
+*.idea
+*.db
+sfsuListings/static/img/*
+sfsuListings/configPaths.py
+*__pycache__/
 
