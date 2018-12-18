@@ -32,24 +32,24 @@
     			 <img src="/static/img/{{post.image}}" style="width:60%; margin-left: auto; margin-right: auto;display:block"/>
           </div>
 
-          <div class="col-md-3" style="margin-bottom: 0px">
+          <div class="col-md-3" style="margin-bottom: 0px;">
             <label style="text-align:left"for="Category">Category:</label>
           </div>
-          <div class="col-md-9" style="margin-bottom: 0px; padding-left: 0px">
+          <div class="col-md-9" style="margin-bottom: 0px;">
             <p>{{post.category}}</p>
           </div>
 
-          <div class="col-md-3" style="margin: 0px">
+          <div class="col-md-3" style="margin: 0px;">
             <label style="text-align:left" for="Price">Price: </label>
           </div>
-          <div class="col-md-9" style="margin: 0px; padding-left: 0px">
+          <div class="col-md-9" style="margin: 0px;">
             <p>{{ '${:,.2f}'.format(post.price) }}</p>
           </div>
 
-           <div class="col-md-3" style="margin: 0px">
+           <div class="col-md-3" style="margin: 0px;">
             <label style="text-align:left" for="Date">Post Date: </label>
             </div>
-            <div class="col-md-9" style="margin: 0px; padding-left: 0px">
+            <div class="col-md-9" style="margin: 0px;">
              <p> <span id="date">{{ post.date.strftime("%m/%d/%Y %H:%M:%S %Z") }}</span></p>
             <script type="text/javascript"> 
             function convertTimeToBetterFormat(time){    
@@ -60,10 +60,10 @@
             </script>
             </div>
           
-    			 <div class="col-md-3" style="margin-top: 0px">
+    			 <div class="col-md-3" style="margin-top: 0px;">
             <label style="text-align:left" for="Description">Description: </label>
           </div>
-          <div class="col-md-9" style="margin-top: 0px; padding-left: 0px"
+          <div class="col-md-9" style="margin-top: 0px;"
             <p>
               {% if post.description %} 
                 {{post.description}} 
