@@ -6,16 +6,17 @@
   <h1 align="center"style="padding-top:10px;">{{post.name}}</h1>
   <div class="row">
     <!-- Left Spacer -->
-    <div class="col-sm-2"></div>
 		{% if post.date is defined %}
-		<div class="container2">
+            <div class="col-md-5"></div>
 
 		<form action="" method="post">
 
 			<!-- Display post's images -->
-			<img src="/static/img/{{post.image}}"  width = 300 height = 300/><br><br><br>
-			
-			
+			<img src="/static/img/{{post.image}}"  width = 300 height = 300/><br>
+
+            <div class="col-md-4"></div>
+            <div class="col-md-5 col-sm-12">
+
 			<!-- Display post's category -->
 			<label for="Category">Category:</label>   {{post.category}}<br>
 
@@ -27,7 +28,7 @@
 			<!-- Display post's description -->
 			<label for="Description">Description: </label>{% if post.description %} {{post.description}} {% else %}
       The author of this post didn't provide a description. {% endif %}
-      <br><br><br>
+      <br><br>
 
 			<label for="Message">Message:</label>
 			<textarea id="subject" name="subject" placeholder="Interested? Send a message to the seller!" style="height:200px; resize: none" required></textarea><br>
@@ -40,15 +41,11 @@
 			</div>
 		</form>
 
-		</div>
+            </div>
 		  {% else %}
 		  <h1> Oops! This post doesn't exist.</h1>
 		  {% endif %}
 
-
-
-	<!-- Right Spacer -->
-    <div class="col-sm-2"></div>
   </div>
 </div>
 {% endblock content %}
