@@ -99,28 +99,6 @@ def postDashboardId(post_id):
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult)
 
-
-@dashboard.route('/Dashboard/Messages')
-def messageDashboard():
-    if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
-        flash('Please log in before accessing your dashboard.')
-        return redirect('/login')
-
-    message = Messages.query.filter_by(sentTo=session.get('user_name')).first()
-
-    id= message.postId
-    title = message.postTitle
-    sentFrom = message.sentFrom
-
-    messageResults = Messages.query.filter_by(postId=id).filter(or_(Messages.sentFrom == sentFrom, Messages.sentTo == sentFrom))
-
-    posts = Posts.query.filter_by(author=session.get('user_name'))
-    messages = Messages.query.filter_by(sentTo=session.get('user_name'))
-    errorString = {"string": 'You don\'t have any messages.'}
-    return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
-                           messages=messageResults, eString=errorString, title=title)
-
-
 @dashboard.route('/Dashboard/Messages/<message_id>')
 def messageDashboardId(message_id):
     message_id = message_id
@@ -144,6 +122,36 @@ def messageDashboardId(message_id):
     errorString = {"string": 'You don\'t have any messages.'}
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
                            messages=messageResults, eString=errorString, title=title)
+
+@dashboard.route('/Dashboard/Messages/<message_id>', methods = ['POST'])
+def replyMessage(message_id): 
+  if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
+    flash('Please log in before accessing your dashboard.')
+    return redirect('/login')
+  message_id = message_id
+  messageBody = request.form['subject']
+  originalMessage = Messages.query.filter_by(id=message_id).first()
+  fromUser = originalMessage.sentTo
+  toUser = originalMessage.sentFrom
+
+  title = originalMessage.postTitle
+  id = originalMessage.postId
+  newMessage = Messages(sentFrom=fromUser, sentTo=toUser,postId=id, postTitle=title, message = messageBody)
+
+  sentFrom = originalMessage.sentFrom
+
+  posts = Posts.query.filter_by(author=session.get('user_name'))
+  messages = Messages.query.filter_by(sentTo=session.get('user_name'))
+  errorString = {"string": 'You don\'t have any messages.'}
+
+  messageResults = Messages.query.filter_by(postId=id).filter(or_(Messages.sentFrom == sentFrom, Messages.sentTo == sentFrom))
+  db.session.add(newMessage)
+  db.session.commit()
+  return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
+                           messages=messageResults, eString=errorString, title=title)
+
+
+    
 
 
 @dashboard.route('/Admin', methods=['GET'])
