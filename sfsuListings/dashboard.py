@@ -19,6 +19,16 @@ login = Flask(__name__)
 
 db = SQLAlchemy(login)
 
+def getUniqueMessages(messages):
+  setOfMessages = set()
+  uniqueMessages = []
+  for message in messages:
+    tupleVal = (message.sentFrom, message.postId)
+    if tupleVal not in setOfMessages:
+      uniqueMessages.append(message)
+      setOfMessages.add(tupleVal)
+  return uniqueMessages
+
 # model class
 class Posts(db.Model):
     name = db.Column(db.String(80), unique=False, nullable=False, primary_key=True)
@@ -66,7 +76,6 @@ class Messages(db.Model):
         return "postId: {}".format(self.postId)
         return "message: {}".format(self.message)
 
-
 @dashboard.route('/Dashboard/')
 def postDashboard():
     if ((session.get('logged_in') == None) or (session.get('logged_in') == False)):
@@ -77,6 +86,8 @@ def postDashboard():
 
     posts = Posts.query.filter_by(author=session.get('user_name'))
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
+    messages = getUniqueMessages(messages)
+ 
     errorString = {"string": 'You don\'t have any items posted yet. Want to post an item?',
                    "post": True}
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult, eString=errorString)
@@ -97,6 +108,7 @@ def postDashboardId(post_id):
 
     posts = Posts.query.filter_by(author=session.get('user_name'))
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
+    messages = getUniqueMessages(messages)
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages, post=postResult)
 
 @dashboard.route('/Dashboard/Messages/<message_id>')
@@ -119,6 +131,7 @@ def messageDashboardId(message_id):
 
     posts = Posts.query.filter_by(author=session.get('user_name'))
     messages = Messages.query.filter_by(sentTo=session.get('user_name'))
+    messages = getUniqueMessages(messages)
     errorString = {"string": 'You don\'t have any messages.'}
     return render_template('Dashboard.html', QueryPosts=posts, QueryMessage=messages,
                            messages=messageResults, eString=errorString, title=title)
@@ -142,6 +155,7 @@ def replyMessage(message_id):
 
   posts = Posts.query.filter_by(author=session.get('user_name'))
   messages = Messages.query.filter_by(sentTo=session.get('user_name'))
+  messages = getUniqueMessages(messages)
   errorString = {"string": 'You don\'t have any messages.'}
 
   messageResults = Messages.query.filter_by(postId=id).filter(or_(Messages.sentFrom == sentFrom, Messages.sentTo == sentFrom))
