@@ -46,19 +46,14 @@ function OpenMessage() {
     </thead>
     <tbody>
 
-    {% for item in QueryMessage%}
-
-      {%if item.sentFrom is defined %}
-          {%if item.message is defined %}
-            <!-- gets username who sent message from database  -->
-          <tr> <td><a href = "/Dashboard/Messages/{{ item.id }}"> {{ item.sentFrom }}</a></td>
-            <!-- gets message from database  -->
-              <td><a href = "/Dashboard/Posts/{{ item.postId }}">{{item.postTitle}}</a></td>
+    {% if QueryMessage %}
+      {% for item in QueryMessage%} 
+          <tr> 
+            <td><a href = "/Dashboard/Messages/{{ item.id }}"> {{ item.sentFrom }}</a></td>
+            <td><a href = "/Dashboard/Posts/{{ item.postId }}">{{item.postTitle}}</a></td>
           </tr>
-              {% endif %}
-      {% endif %}
-
-    {% endfor %}
+      {% endfor %}
+    {% endif %}
     </tbody>
     </table>
     </div>
@@ -73,20 +68,14 @@ function OpenMessage() {
        </tr>
        </thead>
        <tbody>
-          {% for item in QueryPosts%}
-            {%if item.name is defined %}
-                {%if item.category is defined %}
-                
-                {%if item.approval is defined %}
-                <tr>
-                <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>
+          {% if QueryPosts %}
+            {% for item in QueryPosts%}    
+              <tr>         
+                <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>  
                 <td>  <p id="itemStatus" class="allStatuses">{{item.approval}}</p></td> 
-                </tr>
-                {% endif %}
-                {% endif %}
+              </tr>
+            {% endfor %}
           {% endif %}
-
-          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -104,42 +93,29 @@ function OpenMessage() {
     <div class="col-md-6" style="padding-bottom:50px; margin-top:20px">
       {% if post is defined %}
 
-      <div class="row">
-         <div class="col-md-12 text-center" style="padding-left: 0px">
-                <h2 style="background-color:gold; padding:5px; border-radius:15px"> {{post.name}} </h2>
-              </div>
+        <div class="row">
+          <div class="col-md-12 text-center" style="padding-left: 0px">
+            <h2 style="background-color:gold; padding:5px; border-radius:15px"> {{post.name}} </h2>
+          </div>
 
-        {% if title is defined %}
-      <h1 align="center" style="padding-top:10px;">{{title}}</h1>
+          <div class="col-md-12">
+            <label style="margin:0px; text-align: left;">Approval:</label>   {{post.approval.upper()}}
+          </div>
+  		
+  		  	<img src="/static/img/{{post.image}}" width="250" height="250" style="padding:10px"/>
 
-         <div class="col-md-12 text-center" style="padding-left: 0px">
-                <h2 style="background-color:gold; padding:5px; border-radius:15px"> {{title}} </h2>
-              </div>
+          <div class="col-md-12">
+            <label style="margin:0px; text-align: left">Category:</label>  {{post.category}}
+          </div>
 
-        {% endif %}
+          <div class="col-md-12">
+            <label style="margin:0px; text-align: left">Price:</label>  {{'${:,.2f}'.format(post.price)}}
+          </div>
 
-      <div class="col-md-12">
-        <label style="margin:0px; text-align: left;">Approval:</label>   {{post.approval.upper()}}
-      </div>
-			<!-- Display post's images -->
-			<img src="/static/img/{{post.image}}" width="250" height="250" style="padding:10px"/>
-
-			<!-- Display post's category -->
-
-      <div class="col-md-12">
-        <label style="margin:0px; text-align: left">Category:</label>  {{post.category}}
-      </div>
-
-
-			<!-- Display post's price -->
-      <div class="col-md-12">
-        <label style="margin:0px; text-align: left">Price:</label>  {{'${:,.2f}'.format(post.price)}}
-      </div>
-
-			<!-- Display post's description -->
-      <div class="col-md-12">
-        <label style="margin:0px; text-align: left">Description:</label>   {{post.description}}
-      </div>
+    			<!-- Display post's description -->
+          <div class="col-md-12">
+            <label style="margin:0px; text-align: left">Description:</label>   {{post.description}}
+          </div>
 
       {% elif messages is defined %}
       <div class="col-md-12">
@@ -151,14 +127,14 @@ function OpenMessage() {
             <button type="submit" class="btn update_btn form-control" style="background-color:#4C57F6; margin-left:0px; color:white; width: 25%;min-width:100px">Send</button>
 		    </form>
       </div>
-   
-            {% else %}
-            <h4>{{eString.string}}
-                {% if eString.post is defined %}
-                    <a href="/CreatePost" style="color:blue">Click here!</a>
-                {% endif %}
-                </h4>
-        {% endif %}
+
+      {% else %}
+      <h4>{{eString.string}}
+          {% if eString.post is defined %}
+              <a href="/CreatePost" style="color:blue">Click here!</a>
+          {% endif %}
+          </h4>
+      {% endif %}
 
 
 
