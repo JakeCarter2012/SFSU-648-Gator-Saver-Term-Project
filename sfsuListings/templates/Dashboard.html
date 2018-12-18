@@ -39,9 +39,12 @@ function OpenMessage() {
       <!-- Message table -->
     <div id="Messages" class="tabcontent" style="height: 320px; overflow: auto;">
 
-    <table class="table">
-    <td>From:</td>
-    <td>Post:</td>
+    <table class="table table-bordered">
+    <thead>
+      <th>From:</th>
+      <th>Post:</th>
+    </thead>
+    <tbody>
 
     {% for item in QueryMessage%}
 
@@ -56,29 +59,35 @@ function OpenMessage() {
       {% endif %}
 
     {% endfor %}
+    </tbody>
     </table>
     </div>
 
       <!-- Post Table -->
     <div id="Posts" class="tabcontent" style="height: 320px; overflow: auto;">
-      <table class="table">
-      <td>Post:</td>
-      <td>Status:</td>
-
+      <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Post:</th>
+          <th>Status:</th>
+       </tr>
+       </thead>
+       <tbody>
           {% for item in QueryPosts%}
             {%if item.name is defined %}
                 {%if item.category is defined %}
                 
                 {%if item.approval is defined %}
-                <tr> <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>
- 
-                <td><p id="itemStatus" class="allStatuses">{{item.approval}}</p></td>
+                <tr>
+                <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>
+                <td>  <p id="itemStatus" class="allStatuses">{{item.approval}}</p></td> 
                 </tr>
                 {% endif %}
                 {% endif %}
           {% endif %}
 
           {% endfor %}
+        </tbody>
       </table>
     </div>
 
@@ -94,7 +103,6 @@ function OpenMessage() {
 
     <div class="col-md-6" style="padding-bottom:50px; margin-top:20px">
       {% if post is defined %}
-
 
       <div class="row">
       {% if post is defined %}
