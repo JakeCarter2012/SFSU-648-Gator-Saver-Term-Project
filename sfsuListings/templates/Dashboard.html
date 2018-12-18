@@ -105,12 +105,10 @@ function OpenMessage() {
       {% if post is defined %}
 
       <div class="row">
-      {% if post is defined %}
          <div class="col-md-12 text-center" style="padding-left: 0px">
                 <h2 style="background-color:gold; padding:5px; border-radius:15px"> {{post.name}} </h2>
               </div>
 
-        {% endif %}
         {% if title is defined %}
       <h1 align="center" style="padding-top:10px;">{{title}}</h1>
 
@@ -142,7 +140,6 @@ function OpenMessage() {
       <div class="col-md-12">
         <label style="margin:0px; text-align: left">Description:</label>   {{post.description}}
       </div>
-
 
       {% elif messages is defined %}
       <div class="col-md-12">
