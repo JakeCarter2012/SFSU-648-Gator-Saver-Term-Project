@@ -3,46 +3,55 @@
 
     
 <div class="container-fluid">
-  <h1 align="center">Create a Post</h1>
+
+    <div class="row" style="padding-top: 25px;">
+      <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+      <h2 style="background-color:gold; padding:5px; border-radius:15px"> Create a Post </h2>
+    </div>
+  </div>
   <div class="row">
     <!-- Left Spacer -->
     <div class="col-md-4"></div>
 
-		<div class="col-md-6 col-sm-12">
+		<div class="col-md-4 col-sm-12">
 			<form action="" target="_blank" method="post" enctype="multipart/form-data">
 
 				<!-- title -->
-				<label>Title:</label>
-				<input type="text" name="title" required pattern="[a-zA-Z0-9\s]+"><br>
-
-				<!-- categories for the post -->
-				<label>Category:</label>
-					<select name="category">
-					  <option value="Books">Books</option>
-					  <option value="Electronics">Electronics</option>
-					  <option value="Furniture">Furniture</option>
-					  <option value="Clothing">Clothing</option>
-					  <option value="Misc">Misc</option>
-					</select>
-				<br>
-
-				<!-- Price Input -->
-				<label>Price:</label>
-				<input type="number" step="0.01" name="price"  size="48" required><br>
-
+        <div class="form-group" style="margin-bottom: 0px">
+				<input type="text" name="title" class="form-control" placeholder="Post Title" style="padding-left:5px" required pattern="[a-zA-Z0-9\s]+"><br>
+        </div>
 				<!-- Description Input: Item's condition, when it was bought, etc -->
-				<label>(Optional) Description:</label>
-				<textarea  name="description" maxlength="200" style="width:50%; height:90px; resize:none;"></textarea><br>
+        <div class="form-group col-md-12" style="padding: 0px; margin: 0px">
+				<textarea  name="description" placeholder="Description (Optional)" class="form-control" maxlength="200" style="padding-left:5px; width:100%; height:100px ; resize:none;"></textarea><br>
+        </div>
+        <!-- categories for the post -->
+        <div class="form-group col-md-12" style="padding:0px;margin-top:0px">
+        <label style="text-align: left; width:70px;">Category:</label>
+          <select class="form-control" name="category">
+            <option value="Books">Books</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Misc">Misc</option>
+          </select>
+        <!-- Price Input -->
+        </div>
+        <div class="form-group col-md-6 " style="padding:0px; margin: 0px">
+        <input type="number" name="price" class="form-control" placeholder="Price" style="padding-left:5px" size="48" required><br>
+        </div>
 
-				<!-- Uploading image -->
-				<label>(Optional) Image:</label>
-				<input type="file" name="img"><br>
-
-				<h5>Note: It may take up to 24 hours for approval of your post request.</h5>
+				<!-- Uploading image -->  
+        <div class ="form-group col-md-6" style="padding:0px;margin:0px">
+				<input class="form-control-file" style="width:100%;margin-left:0px;" type="file" name="img">
+        </div>
+        <div class="col-md-12">
+				  <h5>Note: It may take up to 24 hours for approval of your post request.</h5>
+        </div>
 				<!-- submit button --> <!-- Will need to code in mandatory fields and reject from going to the next page if fields not completed-->
-				<div class="button" align="left">
-				<button type="submit" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Create Post</button>
-				<button type="button" onclick="location.href='/';" class="btn update_btn form-control" style="background-color:#c0c0c0; width: 25%;min-width:100px">Cancel</button>
+				<div class="button col-md-12" align="left" style="margin-bottom: 20px">
+				<button type="submit" class="btn update_btn form-control" style="background-color:#4C57F6; width: 25%;min-width:100px; color:white">Create Post</button>
+				<button type="button" onclick="location.href='/';" class="btn update_btn form-control" style="background-color:#4C57F6; width: 25%;min-width:100px;color:white">Cancel</button>
 				</div>
 
 			</form>
