@@ -28,8 +28,15 @@
           </div>
 
            <div class="col-md-12" style="margin: 0px">
-            <p><label style="text-align:left" for="Date">Post Date: </label>{{ post.date.strftime("%m/%d/%Y %H:%M:%S %Z") }}</p>
-          </div>
+            <p><label style="text-align:left" for="Date">Post Date: </label><span id="date">{{ post.date.strftime("%m/%d/%Y %H:%M:%S %Z") }}</span></p>
+            <script type="text/javascript"> 
+            function convertTimeToBetterFormat(time){    
+                let date = new Date(time)  
+                return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
+            }
+            document.getElementById('date').textContent = convertTimeToBetterFormat(document.getElementById('date').textContent + "UTC")
+            </script>
+            </div>
           
     			 <div class="col-md-12" style="margin-top: 0px">
             <p> <label style="text-align:left" for="Description">Description: </label>{% if post.description %} {{post.description}} {% else %}
