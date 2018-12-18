@@ -2,42 +2,55 @@
 {% block content %}
 
 <section class="login_area p_100">
-            <div class="container">
-                <div class="login_inner">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="login_title">
-                                <h2 style="padding-top:10px;">Log in</h2>
-                                {% with messages = get_flashed_messages() %}
-                                  {% if messages %}
-                                    <ul class=flashes>
-                                    {% for message in messages %}
-                                      <li style="color:red">{{ message }}</li>
-                                    {% endfor %}
-                                    </ul>
-                                  {% endif %}
-                                {% endwith %}
-                            </div>
-                            <form action="" method="post" class="login_form row">
-                                <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="Username" placeholder="User Name", name="username">
-                                </div>
-                                <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="Password" placeholder="Password" name="password">
-                                </div>
-                                <div class="col-lg-12 form-group">
-                                    <p>Forgot your password ? <a href="#" style="color:blue">Click here!</a></p>
-                                </div>
-                                <div>
-                                    <a href="/SignUp" style="color:blue">New user? Register here!</a>
-                                </div>
-                                <div class="col-lg-12 form-group">
-                                    <button type="submit" value="submit" style ="background-color:#c0c0c0"class="btn update_btn form-control">Login</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+<div class="container" style="padding:0px;margin:0px;">
+      <div class="row" style="padding:10px; left:42%; position:relative;">
+        <form action="" method="post">
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="alert alert-danger text-center" role="alert">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+              </div>
             </div>
-        </section>
+          </div>
+          {% endif %}
+          {% endwith %}
+          <div class="row" style="padding-top: 25px;">
+            <div class="col-lg-4 text-center">
+              <h2 style="background-color:gold; padding:5px; border-radius:15px"> Login </h2>
+            </div>
+          </div>
+          <div class="row" style="margin-top:3px">
+            <div class="col-lg-4 text-center form-group">
+                <input class="form-control" type="Username" placeholder="User Name", name="username">
+            </div>
+          </div>
+          <div class="row" style="margin-top:3px">
+            <div class="col-lg-4 form-group">
+                <input class="form-control" type="Password" placeholder="Password" name="password">
+            </div>
+          </div>
+          <div class="row" style="margin-top:3px">
+            <div class="col-lg-4">
+                <p>Forgot your password ? <a href="#" style="color:blue">Click here!</a></p>
+            </div>
+          </div>
+          <div class="row" style="margin-top:0px">
+            <div class="col-lg-4">
+                <p>New User? <a href="/SignUp" style="color:blue">Register</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 form-group">
+                <button type="submit" value="submit" style ="background-color:#4C57F6; color:white"class="btn form-control" style="border-radius:15px">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}

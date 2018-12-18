@@ -12,11 +12,11 @@
 					<div class="section-title">
             {% with messages = get_flashed_messages() %}
             {% if messages %} 
-            <ul class=flashes>
-            {% for message in messages %}
-            <li style="color:green">{{ message }}</li>
+              <div class="alert alert-success" role="alert">
+              {% for message in messages %}
+              {{ message }}
+              </div>
             {% endfor %}
-            </ul>
             {% endif %}
             {% endwith %}
 						<h2 class="title">RECENTLY POSTED</h2>
