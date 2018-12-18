@@ -46,7 +46,7 @@ function OpenMessage() {
     </thead>
     <tbody>
 
-    {% if QueryMessage %}
+    {% if QueryMessage and QueryMessage != None%}
       {% for item in QueryMessage%} 
           <tr> 
             <td><a href = "/Dashboard/Messages/{{ item.id }}"> {{ item.sentFrom }}</a></td>
@@ -68,7 +68,7 @@ function OpenMessage() {
        </tr>
        </thead>
        <tbody>
-          {% if QueryPosts %}
+          {% if QueryPosts and QueryPosts != None%}
             {% for item in QueryPosts%}    
               <tr>         
                 <td>  <a href = "/Dashboard/Posts/{{ item.id }}"> {{ item.name }}</a> </td>  
@@ -91,7 +91,7 @@ function OpenMessage() {
     <!-- Left Spacer -->
 
     <div class="col-md-6" style="padding-bottom:50px; margin-top:20px">
-      {% if post is defined %}
+      {% if post and post != None%}
 
         <div class="row">
           <div class="col-md-12 text-center" style="padding-left: 0px">
@@ -117,7 +117,7 @@ function OpenMessage() {
             <label style="margin:0px; text-align: left">Description:</label>   {{post.description}}
           </div>
 
-      {% elif messages is defined %}
+      {% elif messages and messages != None%}
       <div class="col-md-12">
         {% for item in messages %}
             <p><b>{{item.sentFrom}}:</b> {{item.message}}</p>
