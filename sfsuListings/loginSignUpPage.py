@@ -58,12 +58,12 @@ def login_submit():
     session['user_name'] = request.form['username']
     return redirect('/')
 
-@loginSignUpPage.route('/SignUp', methods=['GET'])
+@loginSignUpPage.route('/register', methods=['GET'])
 def SignUp():
     return render_template('SignUp.html', title='Register')
 
 
-@loginSignUpPage.route('/SignUp', methods=['POST'])
+@loginSignUpPage.route('/register', methods=['POST'])
 def register():
     '''
     Queries the database to see if the username is taken; then compares passwords to ensure they are the same.
