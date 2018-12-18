@@ -129,11 +129,14 @@ function OpenMessage() {
       </div>
 
       {% else %}
-      <h4>{{eString.string}}
+      <div class="col-md-12 text-center">
+        <h4>
+          {{eString.string}}
           {% if eString.post is defined %}
-              <a href="/CreatePost" style="color:blue">Click here!</a>
+            <a href="/CreatePost" style="color:blue">Click here!</a>
           {% endif %}
-          </h4>
+        </h4>
+      </div>
       {% endif %}
 
 
