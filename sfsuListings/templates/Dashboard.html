@@ -136,7 +136,7 @@ function OpenMessage() {
                 {% for item in messages %}
                     <p><b>{{item.sentFrom}}:</b> {{item.message}}</p>
                 {% endfor %}
-          <form action="/sendMessage" method="post">
+          <form action="" method="post">
               <textarea id="subject" name="subject" placeholder="Reply..." style="height:200px; resize: none" required></textarea><br>
 
                 <!-- submit button, will add mandatory field if this field is empty. -->
